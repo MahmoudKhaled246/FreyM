@@ -60,11 +60,22 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
 }
 
 export function TeamCard({ member, index = 0 }: { member: TeamMember; index?: number }) {
+  const isPrimary = index === 0;
+  const position = isPrimary ? "primary" : index === 2 ? "admin" : "projects";
+  const revealDelay = isPrimary ? 0 : index === 2 ? 90 : 160;
+
   return (
-    <Reveal className="team-card" delay={index * 80}>
-      <div className="team-image"><Image src={member.image} alt="" fill sizes="(max-width: 760px) 100vw, 33vw" /></div>
-      <h3><T value={member.name} /></h3>
-      <p><T value={member.role} /></p>
+    <Reveal className={`team-card-stage team-card-stage--${position}`} delay={revealDelay}>
+      <article className={`team-card ${isPrimary ? "team-card--primary" : "team-card--secondary"}`}>
+        <div className="team-image"><Image src={member.image} alt={member.name.ar} fill sizes="(max-width: 700px) 100vw, (max-width: 1180px) 34vw, 35vw" /></div>
+        <div className="team-card-copy">
+          <h3><T value={member.name} /></h3>
+          <div className="team-role-row">
+            <p><T value={member.role} /></p>
+            <span className="team-accent" aria-hidden="true" />
+          </div>
+        </div>
+      </article>
     </Reveal>
   );
 }
