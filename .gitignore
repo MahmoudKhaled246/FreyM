@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# supplied visual references (not required at runtime)
+/.reference/
+/FreyM.zip

@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frey M Company Group
 
-## Getting Started
+A faithful, responsive reconstruction of the supplied Frey M Company Group website references. The experience is Arabic-first and includes complete English localization, RTL/LTR layouts, persistent dark and light themes, accessible navigation, and restrained motion.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 App Router, React 19, and TypeScript
+- Tailwind CSS 4 with semantic CSS theme tokens
+- `next/font`, `next/image`, and Lucide icons
+- Server Components by default; Client Components only for preferences and interaction
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Production checks:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+npm run start
+```
 
-## Learn More
+## Routes
 
-To learn more about Next.js, take a look at the following resources:
+- `/` — home
+- `/about` — company profile
+- `/services` — services
+- `/projects` — project archive with category filters
+- `/projects/operating-rooms` — project detail
+- `/contact` — contact information, FAQs, and enquiry form
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Theme and localization
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Dark mode is the default because it matches the supplied references. Theme and language choices are stored in `localStorage`; a small pre-hydration script applies them before React starts to avoid a visible flash. Semantic colors live in `src/app/globals.css` under `[data-theme]` selectors.
 
-## Deploy on Vercel
+All visible copy and repeated content is centralized in `src/lib/content.ts`. The preference provider updates the document's `lang` and `dir` attributes so Arabic receives a native RTL layout and English receives LTR. Arabic uses Cairo and English uses Inter through `next/font`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+src/
+  app/                 routes, metadata, and global styles
+  components/          layout, controls, cards, forms, and motion
+  lib/content.ts       localized content and structured data
+public/images/         hero, project, service, team, and company imagery
+```
+
+## Reference assumptions
+
+The archive contained full-page screenshots rather than original production assets. Section imagery was carefully isolated from those references, and the hero photographs were cleaned of embedded website text so headings remain real, accessible, and localizable. Only the routes and project detail clearly evidenced by the screenshots were created. The enquiry form is an interface demonstration and needs an API or email service before production submissions can be delivered.
