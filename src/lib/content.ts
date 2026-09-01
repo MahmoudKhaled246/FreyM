@@ -5,23 +5,57 @@ export type Localized = {
 
 export const localize = (ar: string, en: string): Localized => ({ ar, en });
 
+export type NavigationItem = {
+  href: string;
+  label: Localized;
+  children?: Array<{ href: string; label: Localized }>;
+};
+
+export const navigation: NavigationItem[] = [
+  { href: "/", label: localize("الرئيسية", "Home") },
+  {
+    href: "/about",
+    label: localize("عن الشركة", "About"),
+    children: [
+      { href: "/about#story", label: localize("من نحن", "Who we are") },
+      { href: "/about#values", label: localize("قيمنا ومبادئنا", "Values & principles") },
+      { href: "/about#leadership-message", label: localize("كلمة الإدارة", "Leadership message") },
+      { href: "/about#why-us", label: localize("ما يميزنا", "Why Frey-M") },
+      { href: "/about#companies", label: localize("شركات المجموعة", "Group companies") },
+      { href: "/about#team", label: localize("القيادة التنفيذية", "Leadership") },
+    ],
+  },
+  { href: "/services", label: localize("خدماتنا", "Services") },
+  {
+    href: "/projects",
+    label: localize("مشروعاتنا", "Projects"),
+    children: [
+      { href: "/projects", label: localize("كل المشروعات", "All projects") },
+      { href: "/projects#construction", label: localize("المقاولات العامة", "General contracting") },
+      { href: "/projects#maintenance", label: localize("الصيانة والتشغيل", "Maintenance") },
+      { href: "/projects#interiors", label: localize("الديكورات والتشطيبات", "Décor & finishes") },
+      { href: "/projects#supplies", label: localize("التوريدات العمومية", "General supplies") },
+      { href: "/services#soil-dewatering", label: localize("تجفيف التربة ونزح المياه", "Soil dewatering") },
+    ],
+  },
+  {
+    href: "/profile",
+    label: localize("سابقة الأعمال", "Work profile"),
+    children: [
+      { href: "/profile#current", label: localize("الأعمال الحالية", "Current work") },
+      { href: "/profile#previous", label: localize("الأعمال السابقة", "Previous work") },
+    ],
+  },
+  { href: "/news", label: localize("الأخبار", "News") },
+  { href: "/contact", label: localize("تواصل معنا", "Contact") },
+];
+
 export const common = {
   brandLine: localize(
     "مجموعة فري أم للمقاولات والاستشارات",
     "Contracting & consultancy group",
   ),
-  nav: [
-    { href: "/", label: localize("الرئيسية", "Home") },
-    { href: "/about", label: localize("عن الشركة", "About") },
-    { href: "/services", label: localize("خدماتنا", "Services") },
-    { href: "/projects", label: localize("مشروعاتنا", "Projects") },
-    {
-      href: "/about#companies",
-      label: localize("شركات المجموعة", "Group companies"),
-    },
-    { href: "/about#team", label: localize("فريق العمل", "Team") },
-    { href: "/contact", label: localize("تواصل معنا", "Contact") },
-  ],
+  nav: navigation,
   startProject: localize("ابدأ مشروعك", "Start your project"),
   exploreProjects: localize("استكشف مشروعاتنا", "Explore our projects"),
   contactUs: localize("تواصل معنا", "Contact us"),
@@ -150,13 +184,33 @@ export const services = [
     ],
     link: localize("استكشف المزيد", "Explore landscapes"),
   },
+  {
+    slug: "soil-dewatering",
+    number: "07",
+    icon: "dewatering",
+    image: "/images/services/soil-dewatering.png",
+    title: localize(
+      "تجفيف التربة ونزح المياه الجوفية",
+      "Soil dewatering & groundwater control",
+    ),
+    description: localize(
+      "تصميم وتنفيذ أنظمة خفض منسوب المياه الجوفية وتجفيف مواقع الحفر باستخدام حلول Wellpoint وDeep Well المناسبة لطبيعة التربة.",
+      "Engineered groundwater control and excavation dewatering using wellpoint and deep-well systems selected for the site conditions.",
+    ),
+    features: [
+      localize("دراسات الموقع ومنسوب المياه", "Site and groundwater assessment"),
+      localize("أنظمة Wellpoint وDeep Well", "Wellpoint and deep-well systems"),
+      localize("المراقبة والتشغيل المستمر", "Continuous monitoring and operation"),
+    ],
+    link: localize("حلول نزح المياه", "Dewatering solutions"),
+  },
 ];
 
 export const projects = [
   {
     slug: "blood-bank",
     image: "/images/projects/blood-bank.png",
-    category: "medical-supplies",
+    category: "supplies",
     tag: localize("صيانة وتوريد طبي", "Medical supply"),
     location: localize(
       "مديرية الشؤون الصحية بكفر الشيخ",
@@ -174,7 +228,7 @@ export const projects = [
   {
     slug: "autoclave",
     image: "/images/projects/autoclave.png",
-    category: "medical-supplies",
+    category: "maintenance",
     tag: localize("صيانة طبية", "Medical maintenance"),
     location: localize(
       "مستشفى فيصل سعود العام",
@@ -207,7 +261,7 @@ export const projects = [
   {
     slug: "generator",
     image: "/images/projects/generator.png",
-    category: "electromechanical",
+    category: "supplies",
     tag: localize("كهروميكانيك", "Electromechanical"),
     location: localize("مستشفى قفط المركزي", "Qift Central Hospital"),
     title: localize(
@@ -222,7 +276,7 @@ export const projects = [
   {
     slug: "operating-rooms",
     image: "/images/projects/operating-room.png",
-    category: "medical-supplies",
+    category: "construction",
     tag: localize("إنشاءات طبية", "Medical construction"),
     location: localize(
       "مستشفى كفر الشيخ العام",
@@ -240,7 +294,7 @@ export const projects = [
   {
     slug: "elevators",
     image: "/images/projects/elevator.png",
-    category: "elevators",
+    category: "interiors",
     tag: localize("تطوير وتجديد", "Upgrade & renewal"),
     location: localize("المجمعات الحكومية", "Government facilities"),
     title: localize(
@@ -264,23 +318,11 @@ export const processSteps = [
   localize("التسليم", "Handover"),
 ];
 
-export const team = [
-  {
-    image: "/images/team/mohamed-haggag.png",
-    name: localize("د / محمد حجاج ", "Dr. Mohamed Haggag"),
-    role: localize("الرئيس التنفيذي والمؤسس", "CEO & Founder"),
-  },
-  {
-    image: "/images/team/amr-khattab.png",
-    name: localize("عمرو خطاب", "Amr Khattab"),
-    role: localize("مدير المشروعات", "Projects Director"),
-  },
-  {
-    image: "/images/team/ramy-magdy.png",
-    name: localize("رامي مجدي", "Ramy Magdy"),
-    role: localize("المدير الإداري", "Managing Director"),
-  },
-];
+export const executiveLeader = {
+  image: "/images/team/mohamed-haggag.png",
+  name: localize("د / محمد حجاج ", "Dr. Mohamed Haggag"),
+  role: localize("الرئيس التنفيذي والمؤسس", "CEO & Founder"),
+};
 
 export const values = [
   {
@@ -314,6 +356,116 @@ export const values = [
       "نستثمر في الكفاءات والمعرفة ونطور منظومة العمل.",
       "We invest in people, expertise and better ways of working.",
     ),
+  },
+];
+
+export const whyUs = [
+  {
+    number: "01",
+    title: localize("خبرة ميدانية متراكمة", "Accumulated field expertise"),
+    body: localize(
+      "خبرات عملية ممتدة في المواقع الحيوية والمشروعات ذات المتطلبات الفنية الدقيقة.",
+      "Practical experience across essential facilities and technically demanding projects.",
+    ),
+  },
+  {
+    number: "02",
+    title: localize("حلول هندسية متكاملة", "Integrated engineering solutions"),
+    body: localize(
+      "نجمع التصميم والتوريد والتنفيذ والصيانة داخل منظومة واحدة واضحة المسؤوليات.",
+      "Design, supply, delivery and maintenance coordinated through one accountable system.",
+    ),
+  },
+  {
+    number: "03",
+    title: localize("تطوير وتدريب مستمر", "Continuous development"),
+    body: localize(
+      "نستثمر في الكفاءات الفنية والإدارية ونطوّر أدوات العمل وفق أحدث المعايير.",
+      "We invest in technical and managerial talent and keep our delivery methods current.",
+    ),
+  },
+  {
+    number: "04",
+    title: localize("حلول عملية مبتكرة", "Practical innovation"),
+    body: localize(
+      "نحوّل تحديات الموقع إلى حلول قابلة للتنفيذ تحمي الجودة والوقت والتكلفة.",
+      "Site challenges become buildable solutions that protect quality, time and cost.",
+    ),
+  },
+  {
+    number: "05",
+    title: localize("أعمالنا تتحدث عنا", "A track record that speaks"),
+    body: localize(
+      "كل مشروع هو مرجع جديد لجودة التنفيذ والانضباط في التسليم وخدمة ما بعد التشغيل.",
+      "Every project adds a reference for delivery quality, schedule discipline and aftercare.",
+    ),
+  },
+  {
+    number: "06",
+    title: localize("كوادر متخصصة", "Specialist teams"),
+    body: localize(
+      "فرق متعددة التخصصات تعمل بروح واحدة ومسؤولية واضحة في كل مرحلة.",
+      "Multidisciplinary teams work as one, with clear ownership at every stage.",
+    ),
+  },
+];
+
+export const leadershipMessage = {
+  title: localize("كلمة الإدارة", "Leadership message"),
+  paragraphs: [
+    localize(
+      "بدأت رحلتنا بإيمان بسيط وواضح: أن الثقة تُبنى كما تُبنى المشروعات، خطوة محسوبة بعد أخرى. ومنذ انطلاقنا، حرصنا على أن تكون المصداقية والمهنية والالتزام أساس كل علاقة نكوّنها وكل موقع نعمل فيه.",
+      "Our journey began with a clear belief: trust is built like a project, one measured step at a time. Integrity, professionalism and commitment remain the foundation of every relationship and every site we serve.",
+    ),
+    localize(
+      "نواصل اليوم تطوير قدراتنا وتوسيع تخصصاتنا، من الأعمال المدنية والمنشآت المعقدة إلى التجهيزات الطبية والصيانة والتوريدات، مع الحفاظ على الجودة كخيار وحيد لا بديل عنه.",
+      "Today we continue to expand our capabilities—from civil works and complex facilities to medical fit-out, maintenance and supply—while keeping quality as the only acceptable standard.",
+    ),
+  ],
+};
+
+export const newsItems = [
+  {
+    slug: "operating-rooms-milestone",
+    image: "/images/projects/operating-room.png",
+    tag: localize("تحديثات المشروعات", "Project update"),
+    title: localize(
+      "استكمال منظومة تجهيز غرف العمليات الكبرى",
+      "Major operating-room fit-out milestone",
+    ),
+    description: localize(
+      "نظرة على تكامل التشطيبات المعقمة وشبكات الغازات الطبية وأنظمة التحكم البيئي داخل المشروع.",
+      "A closer look at sterile finishes, medical-gas networks and environmental controls working as one system.",
+    ),
+    href: "/projects/operating-rooms",
+  },
+  {
+    slug: "critical-maintenance",
+    image: "/images/projects/icu.png",
+    tag: localize("الصيانة والتشغيل", "Maintenance & operations"),
+    title: localize(
+      "لماذا تبدأ موثوقية المنشآت الحيوية بالصيانة الوقائية؟",
+      "Why critical-facility reliability starts with preventive care",
+    ),
+    description: localize(
+      "منهج واضح للفحص الدوري وإدارة الأعطال وحماية استمرارية التشغيل داخل وحدات الرعاية الحرجة.",
+      "A disciplined approach to inspections, fault management and uptime in critical-care environments.",
+    ),
+    href: "/projects/icu",
+  },
+  {
+    slug: "standby-power",
+    image: "/images/projects/generator.png",
+    tag: localize("حلول الطاقة", "Power systems"),
+    title: localize(
+      "رفع جاهزية أنظمة الديزل والطاقة الاحتياطية",
+      "Improving standby power readiness",
+    ),
+    description: localize(
+      "كيف تتكامل المولدات ولوحات التحكم وخطط الاختبار لحماية المنشآت من توقف التيار.",
+      "How generators, control panels and testing plans combine to protect essential facilities from outages.",
+    ),
+    href: "/projects/generator",
   },
 ];
 

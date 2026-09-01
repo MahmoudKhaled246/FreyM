@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { CompanyCard, TeamCard, ValueCard } from "@/components/cards";
+import { Quote } from "lucide-react";
+import { CompanyCard, LeadershipSpotlight, ValueCard } from "@/components/cards";
 import { Reveal } from "@/components/reveal";
 import { T } from "@/components/preferences";
 import { PageHero, SectionHeading } from "@/components/ui";
-import { companies, localize, team, values } from "@/lib/content";
+import { companies, executiveLeader, leadershipMessage, localize, values, whyUs } from "@/lib/content";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About & Values",
-  description: "قصة مجموعة فري أم، رؤيتنا وقيمنا وفريق القيادة.",
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "عن مجموعة فري أم",
+  description:
+    "تعرف على قصة مجموعة فري أم للمقاولات والهندسة، رؤيتنا وقيمنا وخبرات فريق القيادة في تنفيذ المشروعات داخل مصر.",
+  path: "/about",
+  image: "/images/heroes/about.png",
+});
 
 export default function AboutPage() {
   return (
@@ -17,8 +22,8 @@ export default function AboutPage() {
       <PageHero
         image="/images/heroes/about.png"
         eyebrow={localize(
-          "إرث هندسي يمتد لأكثر من 20 عامًا",
-          "An engineering legacy spanning 20+ years",
+          "إرث هندسي يمتد لأكثر من 15 عامًا",
+          "An engineering legacy spanning 15+ years",
         )}
         title={localize(
           "قصة عراقة وابتكار",
@@ -29,12 +34,12 @@ export default function AboutPage() {
           "More than a contractor, we are partners in progress—combining enduring craft with the tools of tomorrow.",
         )}
       />
-      <section className="section">
+      <section className="section" id="story">
         <div className="container about-split">
           <Reveal className="about-visual">
             <Image
               src="/images/about/team-site.png"
-              alt=""
+              alt="فريق هندسي يراجع مخططات مشروع إنشائي"
               fill
               sizes="(max-width: 900px) 100vw, 50vw"
             />
@@ -43,8 +48,8 @@ export default function AboutPage() {
             <h2>
               <T
                 value={localize(
-                  "منذ عام 2003، نضع حجر الأساس للتميز",
-                  "Since 2003, we have laid foundations for excellence",
+                  "منذ عام 2011، نضع حجر الأساس للتميز",
+                  "Since 2011, we have laid foundations for excellence",
                 )}
               />
             </h2>
@@ -70,7 +75,7 @@ export default function AboutPage() {
             >
               {[
                 {
-                  v: "+20",
+                  v: "+15",
                   l: localize("عامًا من الخبرة", "Years of expertise"),
                 },
                 {
@@ -123,7 +128,7 @@ export default function AboutPage() {
           </Reveal>
         </div>
       </section>
-      <section className="section">
+      <section className="section" id="values">
         <div className="container">
           <SectionHeading
             centered
@@ -136,6 +141,46 @@ export default function AboutPage() {
           <div className="value-grid">
             {values.map((value, index) => (
               <ValueCard key={value.title.ar} value={value} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="section section-muted" id="leadership-message">
+        <div className="container leadership-message">
+          <Reveal className="leadership-message-mark"><Quote size={44} /></Reveal>
+          <Reveal className="leadership-message-copy">
+            <SectionHeading
+              eyebrow={localize("رؤية تقود التنفيذ", "A delivery-led vision")}
+              title={leadershipMessage.title}
+            />
+            {leadershipMessage.paragraphs.map((paragraph) => (
+              <p key={paragraph.ar}><T value={paragraph} /></p>
+            ))}
+            <div className="leadership-signature">
+              <strong><T value={executiveLeader.name} /></strong>
+              <span><T value={executiveLeader.role} /></span>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+      <section className="section" id="why-us">
+        <div className="container">
+          <SectionHeading
+            centered
+            eyebrow={localize("خبرة تُترجم إلى قيمة", "Experience translated into value")}
+            title={localize("لماذا يختار العملاء Frey-M؟", "Why clients choose Frey-M")}
+            body={localize(
+              "نحوّل خبرة الموقع إلى قرارات أوضح وتنفيذ أكثر انضباطًا ونتائج قابلة للقياس.",
+              "We turn field expertise into clearer decisions, disciplined delivery and measurable outcomes.",
+            )}
+          />
+          <div className="why-grid">
+            {whyUs.map((item, index) => (
+              <Reveal className="why-card" key={item.number} delay={(index % 3) * 70}>
+                <span>{item.number}</span>
+                <h3><T value={item.title} /></h3>
+                <p><T value={item.body} /></p>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -166,16 +211,14 @@ export default function AboutPage() {
         <div className="container">
           <SectionHeading
             centered
-            title={localize("القيادة الإدارية", "Executive leadership")}
+            title={localize("القيادة التنفيذية", "Executive leadership")}
             body={localize(
-              "نخبة من الكفاءات الهندسية والإدارية التي تقود المجموعة نحو القمة.",
-              "Engineering and management expertise guiding the group forward.",
+              "قيادة تنفيذية تجمع بين الخبرة الهندسية والرؤية المؤسسية وتقود المجموعة نحو القمة.",
+              "Executive leadership combining engineering expertise with a clear institutional vision.",
             )}
           />
-          <div className="team-grid">
-            {team.map((member, index) => (
-              <TeamCard key={member.name.ar} member={member} index={index} />
-            ))}
+          <div className="leadership-spotlight">
+            <LeadershipSpotlight leader={executiveLeader} />
           </div>
         </div>
       </section>

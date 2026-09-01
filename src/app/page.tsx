@@ -10,9 +10,10 @@ import {
 } from "lucide-react";
 import {
   CompanyCard,
+  LeadershipSpotlight,
+  NewsCard,
   ProjectCard,
   ServiceCard,
-  TeamCard,
 } from "@/components/cards";
 import { ContactForm } from "@/components/contact-form";
 import { FAQ } from "@/components/faq";
@@ -23,11 +24,12 @@ import {
   clients,
   common,
   companies,
+  executiveLeader,
   localize,
+  newsItems,
   processSteps,
   projects,
   services,
-  team,
 } from "@/lib/content";
 
 const stats = [
@@ -41,7 +43,7 @@ const stats = [
   },
   { value: "+485", label: localize("عميل ومؤسسة معتمدة", "Trusted clients") },
   {
-    value: "+20",
+    value: "+15",
     label: localize("سنوات الخبرة والتراكم", "Years of combined expertise"),
   },
 ];
@@ -154,7 +156,7 @@ export default function HomePage() {
           <Reveal className="about-visual">
             <Image
               src="/images/about/construction-legacy.png"
-              alt=""
+              alt="رافعة وبرج خرساني قيد الإنشاء"
               fill
               sizes="(max-width: 900px) 100vw, 50vw"
             />
@@ -298,6 +300,27 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section">
+        <div className="container">
+          <SectionHeading
+            eyebrow={localize("آخر الأخبار والرؤى", "News & insights")}
+            title={localize("من مواقعنا وغرفة الأخبار", "From our sites and newsroom")}
+            body={localize(
+              "تحديثات مختارة من المشروعات وممارسات الصيانة والحلول الهندسية التي تطور أداء المنشآت.",
+              "Selected project updates and practical insight into maintenance and engineering performance.",
+            )}
+          />
+          <div className="news-grid">
+            {newsItems.map((item, index) => <NewsCard key={item.slug} item={item} index={index} />)}
+          </div>
+          <div className="section-action">
+            <Link className="button button-secondary" href="/news">
+              <T value={localize("استعرض كل الأخبار", "View all news")} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="section section-muted">
         <div className="container">
           <SectionHeading
@@ -347,20 +370,18 @@ export default function HomePage() {
         <div className="container">
           <SectionHeading
             centered
-            eyebrow={localize("فريق القيادة والإدارة", "Leadership team")}
+            eyebrow={localize("القيادة التنفيذية", "Executive leadership")}
             title={localize(
               "قيادة هندسية وإدارية ذات رؤية راسخة",
               "Engineering leadership with a clear vision",
             )}
             body={localize(
-              "نخبة من القيادات التنفيذية والهندسية الحريصة على تطبيق أعلى معايير الحوكمة والابتكار.",
-              "Experienced leaders applying high standards of governance, delivery and innovation.",
+              "قيادة تنفيذية وهندسية حريصة على تطبيق أعلى معايير الحوكمة والابتكار.",
+              "Executive and engineering leadership committed to high standards of governance, delivery and innovation.",
             )}
           />
-          <div className="team-grid">
-            {team.map((member, index) => (
-              <TeamCard key={member.name.ar} member={member} index={index} />
-            ))}
+          <div className="leadership-spotlight">
+            <LeadershipSpotlight leader={executiveLeader} />
           </div>
         </div>
       </section>

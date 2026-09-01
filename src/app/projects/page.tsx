@@ -2,8 +2,15 @@ import type { Metadata } from "next";
 import { ProjectsGrid } from "@/components/projects-grid";
 import { CTA, PageHero } from "@/components/ui";
 import { localize } from "@/lib/content";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Projects", description: "سجل مشروعات مجموعة فري أم في القطاعات الحكومية والحيوية." };
+export const metadata: Metadata = createPageMetadata({
+  title: "مشروعات فري أم الهندسية",
+  description:
+    "استعرض مشروعات مجموعة فري أم في التشييد والصيانة والتجهيزات الطبية والتوريدات للقطاعات الحكومية والمنشآت الحيوية في مصر.",
+  path: "/projects",
+  image: "/images/heroes/projects.png",
+});
 
 export default function ProjectsPage() {
   return (

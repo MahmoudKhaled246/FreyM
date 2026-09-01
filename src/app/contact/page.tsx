@@ -6,8 +6,15 @@ import { Reveal } from "@/components/reveal";
 import { T } from "@/components/preferences";
 import { PageHero, SectionHeading } from "@/components/ui";
 import { clients, common, localize } from "@/lib/content";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Contact & Support", description: "تواصل مع مجموعة فري أم لطلب استشارة هندسية." };
+export const metadata: Metadata = createPageMetadata({
+  title: "تواصل مع مجموعة فري أم",
+  description:
+    "تواصل مع مجموعة فري أم لطلب استشارة أو عرض سعر لمشروعات المقاولات والتشييد والصيانة والتجهيزات الطبية والتوريدات.",
+  path: "/contact",
+  image: "/images/heroes/contact.png",
+});
 
 export default function ContactPage() {
   return (

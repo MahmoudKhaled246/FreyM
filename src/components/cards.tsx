@@ -1,16 +1,18 @@
 import Image from "next/image";
-import { BriefcaseBusiness, Building2, HeartHandshake, Leaf, PackageOpen, Palette, ShieldCheck, Stethoscope, Wrench } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpLeft, BriefcaseBusiness, Building2, Droplets, HeartHandshake, Leaf, PackageOpen, Palette, ShieldCheck, Stethoscope, Wrench } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { T } from "@/components/preferences";
 import { TextLink } from "@/components/ui";
-import type { companies, projects, services, team, values } from "@/lib/content";
+import type { companies, executiveLeader, newsItems, projects, services, values } from "@/lib/content";
 import { common } from "@/lib/content";
 
 type Service = (typeof services)[number];
 type Project = (typeof projects)[number];
-type TeamMember = (typeof team)[number];
+type ExecutiveLeader = typeof executiveLeader;
 type Company = (typeof companies)[number];
 type Value = (typeof values)[number];
+type NewsItem = (typeof newsItems)[number];
 
 const serviceIcons = {
   construction: Building2,
@@ -19,15 +21,16 @@ const serviceIcons = {
   maintenance: Wrench,
   interiors: Palette,
   landscape: Leaf,
+  dewatering: Droplets,
 };
 
 export function ServiceCard({ service, visual = false, index = 0 }: { service: Service; visual?: boolean; index?: number }) {
   const Icon = serviceIcons[service.icon as keyof typeof serviceIcons] ?? Building2;
   return (
-    <Reveal className={`service-card ${visual ? "visual" : ""}`} delay={Math.min(index, 2) * 70}>
+    <Reveal id={service.slug} className={`service-card ${visual ? "visual" : ""}`} delay={Math.min(index, 2) * 70}>
       {visual && (
         <div className="card-image">
-          <Image src={service.image} alt="" fill sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
+          <Image src={service.image} alt={service.title.ar} fill sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
           <span className="card-number">{service.number}</span>
         </div>
       )}
@@ -36,18 +39,18 @@ export function ServiceCard({ service, visual = false, index = 0 }: { service: S
         <h3><T value={service.title} /></h3>
         <p><T value={service.description} /></p>
         {!visual && <ul>{service.features.map((item) => <li key={item.ar}><ShieldCheck size={15} /><T value={item} /></li>)}</ul>}
-        <TextLink href="/services"><T value={visual ? common.discoverMore : service.link} /></TextLink>
+        <TextLink href={`/services#${service.slug}`}><T value={visual ? common.discoverMore : service.link} /></TextLink>
       </div>
     </Reveal>
   );
 }
 
 export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
-  const href = project.slug === "operating-rooms" ? "/projects/operating-rooms" : `/projects#${project.slug}`;
+  const href = `/projects/${project.slug}`;
   return (
     <Reveal className="project-card" delay={Math.min(index, 2) * 70}>
       <div className="card-image">
-        <Image src={project.image} alt="" fill sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
+        <Image src={project.image} alt={`${project.title.ar} — ${project.location.ar}`} fill sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
       </div>
       <div className="project-card-body">
         <span className="project-location"><T value={project.location} /></span>
@@ -59,20 +62,35 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
   );
 }
 
-export function TeamCard({ member, index = 0 }: { member: TeamMember; index?: number }) {
-  const isPrimary = index === 0;
-  const position = isPrimary ? "primary" : index === 2 ? "admin" : "projects";
-  const revealDelay = isPrimary ? 0 : index === 2 ? 90 : 160;
-
+export function NewsCard({ item, index = 0 }: { item: NewsItem; index?: number }) {
   return (
-    <Reveal className={`team-card-stage team-card-stage--${position}`} delay={revealDelay}>
-      <article className={`team-card ${isPrimary ? "team-card--primary" : "team-card--secondary"}`}>
-        <div className="team-image"><Image src={member.image} alt={member.name.ar} fill sizes="(max-width: 700px) 100vw, (max-width: 1180px) 34vw, 35vw" /></div>
-        <div className="team-card-copy">
-          <h3><T value={member.name} /></h3>
-          <div className="team-role-row">
-            <p><T value={member.role} /></p>
-            <span className="team-accent" aria-hidden="true" />
+    <Reveal className="news-card" delay={Math.min(index, 2) * 70}>
+      <Link className="news-card-image" href={item.href} aria-label={item.title.ar}>
+        <Image src={item.image} alt={item.title.ar} fill sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
+      </Link>
+      <div className="news-card-body">
+        <span className="news-tag"><T value={item.tag} /></span>
+        <h3><T value={item.title} /></h3>
+        <p><T value={item.description} /></p>
+        <Link className="news-link" href={item.href}>
+          <T value={{ ar: "اقرأ التفاصيل", en: "Read more" }} />
+          <ArrowUpLeft size={17} />
+        </Link>
+      </div>
+    </Reveal>
+  );
+}
+
+export function LeadershipSpotlight({ leader }: { leader: ExecutiveLeader }) {
+  return (
+    <Reveal className="leadership-spotlight-stage">
+      <article className="leadership-card">
+        <div className="leadership-image"><Image src={leader.image} alt={leader.name.ar} fill sizes="(max-width: 700px) 100vw, (max-width: 1180px) 560px, 600px" /></div>
+        <div className="leadership-card-copy">
+          <h3><T value={leader.name} /></h3>
+          <div className="leadership-role-row">
+            <p><T value={leader.role} /></p>
+            <span className="leadership-accent" aria-hidden="true" />
           </div>
         </div>
       </article>

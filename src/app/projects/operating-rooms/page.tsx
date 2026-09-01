@@ -6,8 +6,15 @@ import { Reveal } from "@/components/reveal";
 import { T } from "@/components/preferences";
 import { Eyebrow, SectionHeading } from "@/components/ui";
 import { common, localize, projects } from "@/lib/content";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Operating Rooms Project", description: "استكمال وتأهيل غرف العمليات الكبرى ووحدات الغازات." };
+export const metadata: Metadata = createPageMetadata({
+  title: "تجهيز غرف العمليات والغازات الطبية",
+  description:
+    "مشروع مجموعة فري أم لاستكمال وتأهيل غرف العمليات الكبرى وشبكات الغازات الطبية والأنظمة الكهروميكانيكية بمستشفى كفر الشيخ العام.",
+  path: "/projects/operating-rooms",
+  image: "/images/heroes/project-detail.png",
+});
 
 const scope = [
   { title: localize("تأهيل غرف العمليات", "Operating-room fit-out"), body: localize("تنفيذ نظام الكبسولة المعقمة بأسطح مقاومة للبكتيريا.", "Sterile capsule systems and hygienic, durable interior surfaces.") },

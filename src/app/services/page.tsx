@@ -4,8 +4,15 @@ import { Reveal } from "@/components/reveal";
 import { T } from "@/components/preferences";
 import { CTA, PageHero, SectionHeading } from "@/components/ui";
 import { localize, processSteps, services } from "@/lib/content";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Engineering Services", description: "حلول هندسية متكاملة من مجموعة فري أم." };
+export const metadata: Metadata = createPageMetadata({
+  title: "خدمات المقاولات والتشييد والصيانة",
+  description:
+    "خدمات مجموعة فري أم في المقاولات والتشييد والصيانة والتجهيزات الطبية والتوريدات العمومية والتصميم الداخلي ونزح المياه الجوفية.",
+  path: "/services",
+  image: "/images/heroes/services.png",
+});
 
 export default function ServicesPage() {
   return (
