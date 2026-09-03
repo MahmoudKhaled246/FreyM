@@ -151,6 +151,51 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section company-film-section" aria-labelledby="company-film-title">
+        <div className="container company-film-layout">
+          <Reveal className="company-film-copy">
+            <Eyebrow>
+              <T value={localize("فري أم عن قرب", "Frey-M in focus")} />
+            </Eyebrow>
+            <h2 id="company-film-title">
+              <T
+                value={localize(
+                  "تعرّف على المجموعة من خلال فيلمنا التعريفي",
+                  "Meet the group through our company film",
+                )}
+              />
+            </h2>
+            <p>
+              <T
+                value={localize(
+                  "لمحة سريعة عن فري أم، ورؤيتنا في تقديم أعمال هندسية وتنفيذية تقوم على الخبرة والدقة والجودة.",
+                  "A brief look at Frey-M and our approach to engineering and delivery—built on experience, precision and quality.",
+                )}
+              />
+            </p>
+          </Reveal>
+
+          <Reveal className="company-film-frame" delay={90}>
+            <div className="company-film-accent" aria-hidden="true" />
+            <video
+              className="company-film-video"
+              controls
+              playsInline
+              preload="metadata"
+              poster="/images/heroes/home.png"
+            >
+              <source src="/videos/frey-m-company-film.mp4" type="video/mp4" />
+              <T
+                value={localize(
+                  "متصفحك لا يدعم تشغيل الفيديو.",
+                  "Your browser does not support video playback.",
+                )}
+              />
+            </video>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="section">
         <div className="container about-split">
           <Reveal className="about-visual">

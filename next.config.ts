@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const isSitesStaticExport = process.env.SITES_STATIC_EXPORT === "1";
+
 const nextConfig: NextConfig = {
   async redirects() {
     return [
@@ -79,5 +81,12 @@ const nextConfig: NextConfig = {
     ];
   },
 };
+
+if (isSitesStaticExport) {
+  nextConfig.output = "export";
+  nextConfig.trailingSlash = true;
+  nextConfig.images = { unoptimized: true };
+  delete nextConfig.redirects;
+}
 
 export default nextConfig;

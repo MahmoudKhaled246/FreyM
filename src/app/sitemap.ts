@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { projects } from "@/lib/content";
 import { absoluteUrl } from "@/lib/seo";
 
+export const dynamic = "force-static";
+
 const pages = [
   {
     path: "/",
