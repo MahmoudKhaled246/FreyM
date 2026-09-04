@@ -19,18 +19,20 @@ export function PartnersMarquee() {
               >
                 {row.map((partner) => (
                   <div className="partner-logo-card" key={partner.name.en}>
-                    <Image
-                      className="partner-logo"
-                      src={partner.logo}
-                      alt={
-                        duplicate
-                          ? ""
-                          : `${partner.name.ar} — ${partner.name.en}`
-                      }
-                      width={1024}
-                      height={1024}
-                      sizes="(max-width: 700px) 48vw, (max-width: 1280px) 24vw, 276px"
-                    />
+                    <div className="partner-logo-frame">
+                      <Image
+                        className="partner-logo"
+                        src={partner.logo}
+                        alt={
+                          duplicate
+                            ? ""
+                            : `${partner.name.ar} — ${partner.name.en}`
+                        }
+                        fill
+                        quality={90}
+                        sizes="(max-width: 700px) 104px, 150px"
+                      />
+                    </div>
                   </div>
                 ))}
               </div>

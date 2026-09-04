@@ -22,6 +22,7 @@ import { PartnersMarquee } from "@/components/partners-marquee";
 import { Reveal } from "@/components/reveal";
 import { T } from "@/components/preferences";
 import { Eyebrow, SectionHeading } from "@/components/ui";
+import { VideoPlayer } from "@/components/video-player";
 import {
   common,
   companies,
@@ -168,21 +169,7 @@ export default function HomePage() {
 
           <Reveal className="company-film-frame" delay={90}>
             <div className="company-film-accent" aria-hidden="true" />
-            <video
-              className="company-film-video"
-              controls
-              playsInline
-              preload="metadata"
-              poster="/images/heroes/home.png"
-            >
-              <source src="/videos/frey-m-company-film.mp4" type="video/mp4" />
-              <T
-                value={localize(
-                  "متصفحك لا يدعم تشغيل الفيديو.",
-                  "Your browser does not support video playback.",
-                )}
-              />
-            </video>
+            <VideoPlayer />
           </Reveal>
         </div>
       </section>
@@ -202,7 +189,7 @@ export default function HomePage() {
               <div>
                 <small className="gold">
                   <T
-                    value={localize("شعارنا في الميدان", "Our field principle")}
+                    value={localize("شعارنا في الميدان ", "Our field principle ")}
                   />
                 </small>
                 <strong>

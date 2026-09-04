@@ -34,7 +34,7 @@ export const navigation: NavigationItem[] = [
       { href: "/projects#maintenance", label: localize("الصيانة والتشغيل", "Maintenance") },
       { href: "/projects#interiors", label: localize("الديكورات والتشطيبات", "Décor & finishes") },
       { href: "/projects#supplies", label: localize("التوريدات العمومية", "General supplies") },
-      { href: "/services#soil-dewatering", label: localize("تجفيف التربة ونزح المياه", "Soil dewatering") },
+      // { href: "/services#soil-dewatering", label: localize("تجفيف التربة ونزح المياه", "Soil dewatering") },
     ],
   },
   {
@@ -183,26 +183,26 @@ export const services = [
     ],
     link: localize("استكشف المزيد", "Explore landscapes"),
   },
-  {
-    slug: "soil-dewatering",
-    number: "07",
-    icon: "dewatering",
-    image: "/images/services/soil-dewatering-hd.png",
-    title: localize(
-      "تجفيف التربة ونزح المياه الجوفية",
-      "Soil dewatering & groundwater control",
-    ),
-    description: localize(
-      "تصميم وتنفيذ أنظمة خفض منسوب المياه الجوفية وتجفيف مواقع الحفر باستخدام حلول Wellpoint وDeep Well المناسبة لطبيعة التربة.",
-      "Engineered groundwater control and excavation dewatering using wellpoint and deep-well systems selected for the site conditions.",
-    ),
-    features: [
-      localize("دراسات الموقع ومنسوب المياه", "Site and groundwater assessment"),
-      localize("أنظمة Wellpoint وDeep Well", "Wellpoint and deep-well systems"),
-      localize("المراقبة والتشغيل المستمر", "Continuous monitoring and operation"),
-    ],
-    link: localize("حلول نزح المياه", "Dewatering solutions"),
-  },
+  // {
+  //   slug: "soil-dewatering",
+  //   number: "07",
+  //   icon: "dewatering",
+  //   image: "/images/services/soil-dewatering-hd.png",
+  //   title: localize(
+  //     "تجفيف التربة ونزح المياه الجوفية",
+  //     "Soil dewatering & groundwater control",
+  //   ),
+  //   description: localize(
+  //     "تصميم وتنفيذ أنظمة خفض منسوب المياه الجوفية وتجفيف مواقع الحفر باستخدام حلول Wellpoint وDeep Well المناسبة لطبيعة التربة.",
+  //     "Engineered groundwater control and excavation dewatering using wellpoint and deep-well systems selected for the site conditions.",
+  //   ),
+  //   features: [
+  //     localize("دراسات الموقع ومنسوب المياه", "Site and groundwater assessment"),
+  //     localize("أنظمة Wellpoint وDeep Well", "Wellpoint and deep-well systems"),
+  //     localize("المراقبة والتشغيل المستمر", "Continuous monitoring and operation"),
+  //   ],
+  //   link: localize("حلول نزح المياه", "Dewatering solutions"),
+  // },
 ];
 
 export const projects = [
@@ -560,46 +560,46 @@ export const partners = [
       "شركة أبو زعبل للصناعات المتخصصة",
       "Abu Zaabal Specialized Industries",
     ),
-    logo: "/images/partners/azsi.webp",
+    logo: "/images/partners/azsi-cutout.webp",
   },
   {
     name: localize(
       "الهيئة العربية للتصنيع",
       "Arab Organization for Industrialization",
     ),
-    logo: "/images/partners/aoi.webp",
+    logo: "/images/partners/aoi-cutout.webp",
   },
   {
     name: localize("جامعة المنصورة", "Mansoura University"),
-    logo: "/images/partners/mansoura-university.webp",
+    logo: "/images/partners/mansoura-university-cutout.webp",
   },
   {
     name: localize(
       "مديرية الشؤون الصحية بكفر الشيخ",
       "Kafr El Sheikh Health Directorate",
     ),
-    logo: "/images/partners/kafr-el-sheikh-health.webp",
+    logo: "/images/partners/kafr-el-sheikh-health-cutout.webp",
   },
   {
     name: localize("مستشفى قفط التخصصي", "Qeft Specialized Hospital"),
-    logo: "/images/partners/qeft-hospital.webp",
+    logo: "/images/partners/qeft-hospital-cutout.webp",
   },
   {
     name: localize(
       "مديرية الصحة والسكان بالبحيرة",
       "Beheira Health Directorate",
     ),
-    logo: "/images/partners/beheira-health.webp",
+    logo: "/images/partners/beheira-health-cutout.webp",
   },
   {
     name: localize(
       "مديرية الشؤون الصحية ببني سويف",
       "Beni Suef Health Directorate",
     ),
-    logo: "/images/partners/beni-suef-health.webp",
+    logo: "/images/partners/beni-suef-health-cutout.webp",
   },
   {
     name: localize("جامعة أسيوط", "Assiut University"),
-    logo: "/images/partners/assiut-university.webp",
+    logo: "/images/partners/assiut-university-cutout.webp",
   },
 ];
