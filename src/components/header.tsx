@@ -23,6 +23,9 @@ export function Header() {
   const { language, theme, setLanguage, toggleTheme } = usePreferences();
   const text = useLocalized();
   const [open, setOpen] = useState(false);
+  const [dismissedDropdown, setDismissedDropdown] = useState<string | null>(
+    null,
+  );
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", open);
@@ -49,6 +52,15 @@ export function Header() {
     if (href === "/") return pathname === "/";
     if (href.includes("#")) return false;
     return pathname.startsWith(href.split("#")[0]);
+  };
+
+  const dismissDesktopDropdown = (href: string) => {
+    setDismissedDropdown(href);
+    window.requestAnimationFrame(() => {
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
+    });
   };
 
   return (
@@ -143,8 +155,18 @@ export function Header() {
               if (item.children?.length) {
                 return (
                   <div
-                    className={`nav-item nav-dropdown ${active ? "active" : ""}`}
+                    className={`nav-item nav-dropdown ${active ? "active" : ""} ${dismissedDropdown === item.href ? "dismissed" : ""}`.trim()}
                     key={item.href}
+                    onClickCapture={(event) => {
+                      if (
+                        event.target instanceof Element &&
+                        event.target.closest("a")
+                      ) {
+                        dismissDesktopDropdown(item.href);
+                      }
+                    }}
+                    onMouseLeave={() => setDismissedDropdown(null)}
+                    onFocusCapture={() => setDismissedDropdown(null)}
                   >
                     <Link
                       className="nav-dropdown-trigger"

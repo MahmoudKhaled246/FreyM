@@ -106,6 +106,9 @@ img { max-width: 100%; }
 [dir="rtl"] .nav-dropdown-menu { transform: translate(50%, 8px); }
 .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown:focus-within .nav-dropdown-menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0); }
 [dir="rtl"] .nav-dropdown:hover .nav-dropdown-menu, [dir="rtl"] .nav-dropdown:focus-within .nav-dropdown-menu { transform: translate(50%, 0); }
+.nav-dropdown.dismissed .nav-dropdown-menu, [dir="rtl"] .nav-dropdown.dismissed .nav-dropdown-menu { opacity: 0; visibility: hidden; pointer-events: none; transform: translate(-50%, 8px); }
+[dir="rtl"] .nav-dropdown.dismissed .nav-dropdown-menu { transform: translate(50%, 8px); }
+.nav-dropdown.dismissed .nav-dropdown-trigger svg { transform: none; }
 .nav-dropdown-menu a { padding: 10px 12px; color: var(--muted-strong); border-radius: 7px; font-size: .79rem; font-weight: 650; transition: color 160ms ease, background-color 160ms ease; }
 .nav-dropdown-menu a:hover, .nav-dropdown-menu a:focus-visible { color: var(--foreground); background: var(--primary-soft); }
 .desktop-actions { display: flex; align-items: center; }
