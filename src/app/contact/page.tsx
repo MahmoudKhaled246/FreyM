@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { Clock3, Globe2, Mail, MapPin, Phone } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { FAQ } from "@/components/faq";
+import { PartnersMarquee } from "@/components/partners-marquee";
 import { Reveal } from "@/components/reveal";
 import { T } from "@/components/preferences";
 import { PageHero, SectionHeading } from "@/components/ui";
-import { clients, common, localize } from "@/lib/content";
+import { common, localize } from "@/lib/content";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -43,8 +44,9 @@ export default function ContactPage() {
       <section className="section">
         <div className="container"><SectionHeading centered title={localize("الأسئلة الشائعة", "Frequently asked questions")} body={localize("كل ما تحتاج معرفته عن خدمات مجموعة فري أم.", "What clients most often ask about Frey-M services.")} /><FAQ compact /></div>
       </section>
-      <section className="section section-muted">
-        <div className="container"><div className="eyebrow centered"><span /><T value={localize("شركاء النجاح المعتمدون", "Trusted clients")} /><span /></div><div className="partner-grid" style={{marginTop:32}}>{clients.map((client,index)=><Reveal className="partner" key={client.ar} delay={index*60}><T value={client} /></Reveal>)}</div></div>
+      <section className="section section-muted partner-section">
+        <div className="container partner-heading"><div className="eyebrow centered"><span /><T value={localize("شركاء النجاح المعتمدون", "Trusted clients")} /><span /></div></div>
+        <PartnersMarquee />
       </section>
     </>
   );

@@ -10,21 +10,21 @@ import {
 } from "lucide-react";
 import {
   CompanyCard,
-  LeadershipSpotlight,
   NewsCard,
   ProjectCard,
   ServiceCard,
 } from "@/components/cards";
+import { AnimatedStats } from "@/components/animated-stats";
+import { CEOMessageSection } from "@/components/ceo-message";
 import { ContactForm } from "@/components/contact-form";
 import { FAQ } from "@/components/faq";
+import { PartnersMarquee } from "@/components/partners-marquee";
 import { Reveal } from "@/components/reveal";
 import { T } from "@/components/preferences";
 import { Eyebrow, SectionHeading } from "@/components/ui";
 import {
-  clients,
   common,
   companies,
-  executiveLeader,
   localize,
   newsItems,
   processSteps,
@@ -34,16 +34,16 @@ import {
 
 const stats = [
   {
-    value: "+890",
+    value: 890,
     label: localize("مشروع قيد التنفيذ", "Projects in delivery"),
   },
   {
-    value: "+789",
+    value: 789,
     label: localize("مشروع منجز بنجاح", "Successfully delivered"),
   },
-  { value: "+485", label: localize("عميل ومؤسسة معتمدة", "Trusted clients") },
+  { value: 485, label: localize("عميل ومؤسسة معتمدة", "Trusted clients") },
   {
-    value: "+15",
+    value: 15,
     label: localize("سنوات الخبرة والتراكم", "Years of combined expertise"),
   },
 ];
@@ -120,16 +120,7 @@ export default function HomePage() {
               <T value={common.contactUs} />
             </Link>
           </div>
-          <div className="hero-stats">
-            {stats.map((stat) => (
-              <div className="hero-stat" key={stat.value}>
-                <strong dir="ltr">{stat.value}</strong>
-                <span>
-                  <T value={stat.label} />
-                </span>
-              </div>
-            ))}
-          </div>
+          <AnimatedStats items={stats} />
         </Reveal>
       </section>
 
@@ -151,13 +142,59 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section company-film-section" aria-labelledby="company-film-title">
+        <div className="container company-film-layout">
+          <Reveal className="company-film-copy">
+            <Eyebrow>
+              <T value={localize("فري أم عن قرب", "Frey-M in focus")} />
+            </Eyebrow>
+            <h2 id="company-film-title">
+              <T
+                value={localize(
+                  "تعرّف على المجموعة من خلال فيلمنا التعريفي",
+                  "Meet the group through our company film",
+                )}
+              />
+            </h2>
+            <p>
+              <T
+                value={localize(
+                  "لمحة سريعة عن فري أم، ورؤيتنا في تقديم أعمال هندسية وتنفيذية تقوم على الخبرة والدقة والجودة.",
+                  "A brief look at Frey-M and our approach to engineering and delivery—built on experience, precision and quality.",
+                )}
+              />
+            </p>
+          </Reveal>
+
+          <Reveal className="company-film-frame" delay={90}>
+            <div className="company-film-accent" aria-hidden="true" />
+            <video
+              className="company-film-video"
+              controls
+              playsInline
+              preload="metadata"
+              poster="/images/heroes/home.png"
+            >
+              <source src="/videos/frey-m-company-film.mp4" type="video/mp4" />
+              <T
+                value={localize(
+                  "متصفحك لا يدعم تشغيل الفيديو.",
+                  "Your browser does not support video playback.",
+                )}
+              />
+            </video>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="section">
         <div className="container about-split">
           <Reveal className="about-visual">
             <Image
-              src="/images/about/construction-legacy.png"
-              alt="رافعة وبرج خرساني قيد الإنشاء"
+              src="/images/about/construction-experience-hd.png"
+              alt="فريق فري أم الهندسي يراجع أعمال مشروع إنشائي"
               fill
+              quality={90}
               sizes="(max-width: 900px) 100vw, 50vw"
             />
             <div className="about-visual-note">
@@ -186,16 +223,16 @@ export default function HomePage() {
             <h2>
               <T
                 value={localize(
-                  "خبرة تمتد عبر أجيال في صياغة المشهد الإنشائي",
-                  "Generations of expertise shaping the built environment",
+                  "15 عامًا من الخبرة في صياغة المشهد الإنشائي",
+                  "15 years of expertise shaping the built environment",
                 )}
               />
             </h2>
             <p>
               <T
                 value={localize(
-                  "تعد مجموعة Frey-M إحدى الكيانات الوطنية الرائدة في قطاع المقاولات والهندسة العامة في مصر والشرق الأوسط. حيث تمتد جذورنا لأكثر من نصف قرن من العمل المتواصل الذي يجمع بين أصالة الحرفة وأحدث التقنيات الهندسية العالمية.",
-                  "Frey-M is a national engineering and contracting group rooted in more than half a century of continuous field experience, combining craft, governance and modern engineering systems.",
+                  "على مدار 15 عامًا، طوّرت مجموعة Frey-M منظومة متكاملة للمقاولات والهندسة في مصر والشرق الأوسط وأفريقيا؛ تجمع التشييد والبنية التحتية والتشطيبات والمنشآت المعدنية والتوريدات والاستشارات داخل فريق واحد. ونستثمر باستمرار في أحدث تقنيات البناء وتدريب كوادرنا لنضمن تنفيذًا آمنًا ودقيقًا وخدمة تحافظ على ثقة عملائنا.",
+                  "Over 15 years, Frey-M has built an integrated contracting and engineering system across Egypt, the Middle East and Africa—bringing construction, infrastructure, fit-out, steel structures, supply and consultancy together in one team. We continually invest in modern building technology and specialist training to deliver safely, precisely and reliably.",
                 )}
               />
             </p>
@@ -279,9 +316,9 @@ export default function HomePage() {
               "A disciplined project system protects quality, safety and accountability from first study to handover.",
             )}
           />
-          <div className="process-grid">
+          <div className="process-grid process-grid-six">
             {processSteps.slice(0, 6).map((step, index) => (
-              <Reveal className="process-step" key={step.ar} delay={index * 55}>
+              <Reveal className="process-step" key={step.ar} delay={index * 55} tabIndex={0}>
                 <strong>{String(index + 1).padStart(2, "0")}</strong>
                 <h3>
                   <T value={step} />
@@ -358,7 +395,6 @@ export default function HomePage() {
               <CompanyCard
                 key={company.number}
                 company={company}
-                featured={index === 1}
                 index={index}
               />
             ))}
@@ -366,28 +402,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section section-muted" id="team">
-        <div className="container">
-          <SectionHeading
-            centered
-            eyebrow={localize("القيادة التنفيذية", "Executive leadership")}
-            title={localize(
-              "قيادة هندسية وإدارية ذات رؤية راسخة",
-              "Engineering leadership with a clear vision",
-            )}
-            body={localize(
-              "قيادة تنفيذية وهندسية حريصة على تطبيق أعلى معايير الحوكمة والابتكار.",
-              "Executive and engineering leadership committed to high standards of governance, delivery and innovation.",
-            )}
-          />
-          <div className="leadership-spotlight">
-            <LeadershipSpotlight leader={executiveLeader} />
-          </div>
-        </div>
-      </section>
+      <CEOMessageSection />
 
-      <section className="section">
-        <div className="container">
+      <section className="section partner-section">
+        <div className="container partner-heading">
           <div className="eyebrow centered">
             <span />
             <T
@@ -398,31 +416,8 @@ export default function HomePage() {
             />
             <span />
           </div>
-          <div className="partner-grid" style={{ marginTop: 32 }}>
-            {clients
-              .concat([
-                localize("مستشفى قفط المركزي", "Qift Central Hospital"),
-                localize(
-                  "مديرية الشؤون الصحية بالبحيرة",
-                  "Beheira Health Directorate",
-                ),
-                localize(
-                  "مديرية الشؤون الصحية ببني سويف",
-                  "Beni Suef Health Directorate",
-                ),
-                localize("جامعة أسيوط", "Assiut University"),
-              ])
-              .map((client, index) => (
-                <Reveal
-                  className="partner"
-                  key={client.ar}
-                  delay={(index % 4) * 50}
-                >
-                  <T value={client} />
-                </Reveal>
-              ))}
-          </div>
         </div>
+        <PartnersMarquee />
       </section>
 
       <section className="section section-muted">

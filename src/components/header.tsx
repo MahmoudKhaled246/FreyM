@@ -29,6 +29,22 @@ export function Header() {
     return () => document.body.classList.remove("menu-open");
   }, [open]);
 
+  useEffect(() => {
+    const closeMenu = () => setOpen(false);
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeMenu();
+    };
+
+    window.addEventListener("hashchange", closeMenu);
+    window.addEventListener("popstate", closeMenu);
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      window.removeEventListener("hashchange", closeMenu);
+      window.removeEventListener("popstate", closeMenu);
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, []);
+
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     if (href.includes("#")) return false;
@@ -196,7 +212,14 @@ export function Header() {
             <X size={22} />
           </button>
         </div>
-        <nav aria-label={text(localize("قائمة الهاتف", "Mobile navigation"))}>
+        <nav
+          aria-label={text(localize("قائمة الهاتف", "Mobile navigation"))}
+          onClickCapture={(event) => {
+            if (event.target instanceof Element && event.target.closest("a")) {
+              setOpen(false);
+            }
+          }}
+        >
           {common.nav.map((item, index) => {
             const active = isActive(item.href);
             if (item.children?.length) {
@@ -206,8 +229,14 @@ export function Header() {
                   key={item.href}
                 >
                   <summary>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    <T value={item.label} />
+                    <Link
+                      href={item.href}
+                      onClick={(event) => event.stopPropagation()}
+                      onNavigate={() => setOpen(false)}
+                    >
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <T value={item.label} />
+                    </Link>
                     <ChevronDown size={17} />
                   </summary>
                   <div className="mobile-submenu">
@@ -216,6 +245,7 @@ export function Header() {
                         key={child.href}
                         href={child.href}
                         onClick={() => setOpen(false)}
+                        onNavigate={() => setOpen(false)}
                       >
                         <T value={child.label} />
                       </Link>
@@ -230,6 +260,7 @@ export function Header() {
                 className={active ? "active" : ""}
                 href={item.href}
                 onClick={() => setOpen(false)}
+                onNavigate={() => setOpen(false)}
                 aria-current={active ? "page" : undefined}
               >
                 <span>{String(index + 1).padStart(2, "0")}</span>
@@ -254,6 +285,7 @@ export function Header() {
           className="button button-primary mobile-start"
           href="/contact"
           onClick={() => setOpen(false)}
+          onNavigate={() => setOpen(false)}
         >
           <T value={common.startProject} />
           <ArrowUpLeft size={18} />

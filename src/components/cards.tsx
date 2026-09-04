@@ -30,7 +30,7 @@ export function ServiceCard({ service, visual = false, index = 0 }: { service: S
     <Reveal id={service.slug} className={`service-card ${visual ? "visual" : ""}`} delay={Math.min(index, 2) * 70}>
       {visual && (
         <div className="card-image">
-          <Image src={service.image} alt={service.title.ar} fill sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
+          <Image src={service.image} alt={service.title.ar} fill quality={90} sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
           <span className="card-number">{service.number}</span>
         </div>
       )}
@@ -50,7 +50,7 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
   return (
     <Reveal className="project-card" delay={Math.min(index, 2) * 70}>
       <div className="card-image">
-        <Image src={project.image} alt={`${project.title.ar} — ${project.location.ar}`} fill sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
+        <Image src={project.image} alt={`${project.title.ar} — ${project.location.ar}`} fill quality={90} sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
       </div>
       <div className="project-card-body">
         <span className="project-location"><T value={project.location} /></span>
@@ -66,7 +66,7 @@ export function NewsCard({ item, index = 0 }: { item: NewsItem; index?: number }
   return (
     <Reveal className="news-card" delay={Math.min(index, 2) * 70}>
       <Link className="news-card-image" href={item.href} aria-label={item.title.ar}>
-        <Image src={item.image} alt={item.title.ar} fill sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
+        <Image src={item.image} alt={item.title.ar} fill quality={90} sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
       </Link>
       <div className="news-card-body">
         <span className="news-tag"><T value={item.tag} /></span>
@@ -85,7 +85,7 @@ export function LeadershipSpotlight({ leader }: { leader: ExecutiveLeader }) {
   return (
     <Reveal className="leadership-spotlight-stage">
       <article className="leadership-card">
-        <div className="leadership-image"><Image src={leader.image} alt={leader.name.ar} fill sizes="(max-width: 700px) 100vw, (max-width: 1180px) 560px, 600px" /></div>
+        <div className="leadership-image"><Image src={leader.image} alt={leader.name.ar} fill quality={90} sizes="(max-width: 700px) 100vw, (max-width: 1180px) 560px, 600px" /></div>
         <div className="leadership-card-copy">
           <h3><T value={leader.name} /></h3>
           <div className="leadership-role-row">
@@ -98,9 +98,9 @@ export function LeadershipSpotlight({ leader }: { leader: ExecutiveLeader }) {
   );
 }
 
-export function CompanyCard({ company, featured = false, index = 0 }: { company: Company; featured?: boolean; index?: number }) {
+export function CompanyCard({ company, index = 0 }: { company: Company; index?: number }) {
   return (
-    <Reveal className={`company-card ${featured ? "featured" : ""}`} delay={index * 70}>
+    <Reveal className="company-card" delay={index * 70} tabIndex={0}>
       <span className="company-number">{company.number}</span>
       <h3><T value={company.title} /></h3>
       <p><T value={company.body} /></p>

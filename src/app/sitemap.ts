@@ -2,12 +2,14 @@ import type { MetadataRoute } from "next";
 import { projects } from "@/lib/content";
 import { absoluteUrl } from "@/lib/seo";
 
+export const dynamic = "force-static";
+
 const pages = [
   {
     path: "/",
     images: [
       "/images/heroes/home.png",
-      "/images/about/construction-legacy.png",
+      "/images/about/construction-experience-hd.png",
     ],
   },
   { path: "/about", images: ["/images/heroes/about.png"] },
@@ -15,13 +17,13 @@ const pages = [
     path: "/services",
     images: [
       "/images/heroes/services.png",
-      "/images/services/construction.png",
-      "/images/services/medical.png",
-      "/images/services/supplies.png",
-      "/images/services/maintenance.png",
-      "/images/services/interiors.png",
-      "/images/services/landscape.png",
-      "/images/services/soil-dewatering.png",
+      "/images/services/construction-hd.png",
+      "/images/services/medical-hd.png",
+      "/images/services/supplies-hd.png",
+      "/images/services/maintenance-hd.png",
+      "/images/services/interiors-hd.png",
+      "/images/services/landscape-hd.png",
+      "/images/services/soil-dewatering-hd.png",
     ],
   },
   { path: "/projects", images: ["/images/heroes/projects.png"] },

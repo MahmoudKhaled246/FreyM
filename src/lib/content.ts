@@ -19,10 +19,9 @@ export const navigation: NavigationItem[] = [
     children: [
       { href: "/about#story", label: localize("من نحن", "Who we are") },
       { href: "/about#values", label: localize("قيمنا ومبادئنا", "Values & principles") },
-      { href: "/about#leadership-message", label: localize("كلمة الإدارة", "Leadership message") },
+      { href: "/about#leadership-message", label: localize("رسالة الرئيس التنفيذي", "CEO message") },
       { href: "/about#why-us", label: localize("ما يميزنا", "Why Frey-M") },
       { href: "/about#companies", label: localize("شركات المجموعة", "Group companies") },
-      { href: "/about#team", label: localize("القيادة التنفيذية", "Leadership") },
     ],
   },
   { href: "/services", label: localize("خدماتنا", "Services") },
@@ -74,7 +73,7 @@ export const services = [
     slug: "construction",
     number: "01",
     icon: "construction",
-    image: "/images/services/construction.png",
+    image: "/images/services/construction-hd.png",
     title: localize(
       "التشييد والمقاولات العامة",
       "Construction & general contracting",
@@ -97,7 +96,7 @@ export const services = [
     slug: "medical",
     number: "02",
     icon: "medical",
-    image: "/images/services/medical.png",
+    image: "/images/services/medical-hd.png",
     title: localize("التجهيزات العامة والطبية", "General & medical fit-outs"),
     description: localize(
       "تجهيز المنشآت الطبية وغير الطبية بأحدث الأنظمة، بما في ذلك غرف العمليات المعقمة ووحدات العناية المركزة.",
@@ -114,7 +113,7 @@ export const services = [
     slug: "supplies",
     number: "03",
     icon: "supplies",
-    image: "/images/services/supplies.png",
+    image: "/images/services/supplies-hd.png",
     title: localize("التوريدات العمومية", "General supplies"),
     description: localize(
       "توريد كافة الاحتياجات الهندسية والصناعية والطبية للمؤسسات الحكومية وقطاع الأعمال بأعلى معايير الجودة.",
@@ -134,7 +133,7 @@ export const services = [
     slug: "maintenance",
     number: "04",
     icon: "maintenance",
-    image: "/images/services/maintenance.png",
+    image: "/images/services/maintenance-hd.png",
     title: localize("أعمال الصيانة والتشغيل", "Maintenance & operations"),
     description: localize(
       "إدارة وصيانة المنشآت والمجمعات السكنية والتجارية لضمان استدامة الأداء والكفاءة التشغيلية.",
@@ -154,7 +153,7 @@ export const services = [
     slug: "interiors",
     number: "05",
     icon: "interiors",
-    image: "/images/services/interiors.png",
+    image: "/images/services/interiors-hd.png",
     title: localize("التصميمات الداخلية والديكور", "Interior design & décor"),
     description: localize(
       "خلق بيئات معمارية ملهمة من خلال التصميم الداخلي والخارجي المبتكر والتشطيبات فائقة الجودة.",
@@ -171,7 +170,7 @@ export const services = [
     slug: "landscape",
     number: "06",
     icon: "landscape",
-    image: "/images/services/landscape.png",
+    image: "/images/services/landscape-hd.png",
     title: localize("تجهيز المساحات الخضراء", "Landscape development"),
     description: localize(
       "تنسيق الحدائق والمتنزهات العامة واللاندسكيب لخلق مساحات خضراء متناغمة مع البيئة العمرانية.",
@@ -188,7 +187,7 @@ export const services = [
     slug: "soil-dewatering",
     number: "07",
     icon: "dewatering",
-    image: "/images/services/soil-dewatering.png",
+    image: "/images/services/soil-dewatering-hd.png",
     title: localize(
       "تجفيف التربة ونزح المياه الجوفية",
       "Soil dewatering & groundwater control",
@@ -209,7 +208,7 @@ export const services = [
 export const projects = [
   {
     slug: "blood-bank",
-    image: "/images/projects/blood-bank.png",
+    image: "/images/projects/blood-bank-hd.png",
     category: "supplies",
     tag: localize("صيانة وتوريد طبي", "Medical supply"),
     location: localize(
@@ -227,7 +226,7 @@ export const projects = [
   },
   {
     slug: "autoclave",
-    image: "/images/projects/autoclave.png",
+    image: "/images/projects/autoclave-hd.png",
     category: "maintenance",
     tag: localize("صيانة طبية", "Medical maintenance"),
     location: localize(
@@ -245,7 +244,7 @@ export const projects = [
   },
   {
     slug: "icu",
-    image: "/images/projects/icu.png",
+    image: "/images/projects/icu-hd.png",
     category: "maintenance",
     tag: localize("صيانة طبية", "Medical maintenance"),
     location: localize("مستشفى حميات دسوق", "Desouk Fever Hospital"),
@@ -260,7 +259,7 @@ export const projects = [
   },
   {
     slug: "generator",
-    image: "/images/projects/generator.png",
+    image: "/images/projects/generator-hd.png",
     category: "supplies",
     tag: localize("كهروميكانيك", "Electromechanical"),
     location: localize("مستشفى قفط المركزي", "Qift Central Hospital"),
@@ -275,7 +274,7 @@ export const projects = [
   },
   {
     slug: "operating-rooms",
-    image: "/images/projects/operating-room.png",
+    image: "/images/projects/operating-room-hd.png",
     category: "construction",
     tag: localize("إنشاءات طبية", "Medical construction"),
     location: localize(
@@ -293,7 +292,7 @@ export const projects = [
   },
   {
     slug: "elevators",
-    image: "/images/projects/elevator.png",
+    image: "/images/projects/elevator-hd.png",
     category: "interiors",
     tag: localize("تطوير وتجديد", "Upgrade & renewal"),
     location: localize("المجمعات الحكومية", "Government facilities"),
@@ -411,23 +410,33 @@ export const whyUs = [
 ];
 
 export const leadershipMessage = {
-  title: localize("كلمة الإدارة", "Leadership message"),
+  eyebrow: localize("من الحلم إلى أثرٍ مستدام", "From a dream to lasting impact"),
+  title: localize("رسالة الرئيس التنفيذي", "A message from the CEO"),
+  lead: localize(
+    "ثقة عملائنا هي أساس نجاحنا، والجودة هي خيارنا الوحيد.",
+    "Our clients' trust is the foundation of our success, and quality is our only choice.",
+  ),
   paragraphs: [
     localize(
-      "بدأت رحلتنا بإيمان بسيط وواضح: أن الثقة تُبنى كما تُبنى المشروعات، خطوة محسوبة بعد أخرى. ومنذ انطلاقنا، حرصنا على أن تكون المصداقية والمهنية والالتزام أساس كل علاقة نكوّنها وكل موقع نعمل فيه.",
-      "Our journey began with a clear belief: trust is built like a project, one measured step at a time. Integrity, professionalism and commitment remain the foundation of every relationship and every site we serve.",
+      "بدأت رحلتنا حلمًا، ثم أصبحت — بفضل الله وجهود فريقنا المخلص — واقعًا يتقدم بثبات. عبرنا التحديات وحققنا نجاحات متتالية حتى رسّخت Frey-M مكانتها بين الشركات الموثوقة في مصر، وما زلنا نطوّر قدراتنا وخططنا الاستراتيجية لنشارك بفاعلية في النهضة العمرانية والاقتصادية.",
+      "Our journey began as a dream and, by God's grace and the dedication of our team, became a reality that continues to advance. We overcame challenges and built Frey-M into a trusted name in Egypt, while continuously developing our capabilities to contribute to the country's urban and economic progress.",
     ),
     localize(
-      "نواصل اليوم تطوير قدراتنا وتوسيع تخصصاتنا، من الأعمال المدنية والمنشآت المعقدة إلى التجهيزات الطبية والصيانة والتوريدات، مع الحفاظ على الجودة كخيار وحيد لا بديل عنه.",
-      "Today we continue to expand our capabilities—from civil works and complex facilities to medical fit-out, maintenance and supply—while keeping quality as the only acceptable standard.",
+      "نجعل الجودة خيارًا وحيدًا لا بديل له؛ من الطرق والجسور والمنشآت المعقدة والمباني المرموقة، إلى أعمال البنية التحتية والتجهيزات والصيانة الطبية والكهروميكانيكية والإلكترونية. يقف خلف كل إنجاز فريق يعمل بروح واحدة ومسؤولية كاملة، لنوفي بالتزاماتنا في جميع الظروف ونقدّم نتائج تتجاوز تطلعات عملائنا.",
+      "Quality is our only standard—from roads, bridges and complex structures to distinguished buildings, infrastructure, specialist fit-outs, and medical, electromechanical and electronic maintenance. Behind every achievement is one accountable team, committed to delivering in every circumstance and exceeding our clients' expectations.",
     ),
+  ],
+  principles: [
+    localize("المصداقية", "Integrity"),
+    localize("المهنية", "Professionalism"),
+    localize("الالتزام", "Commitment"),
   ],
 };
 
 export const newsItems = [
   {
     slug: "operating-rooms-milestone",
-    image: "/images/projects/operating-room.png",
+    image: "/images/news/operating-room-handover.png",
     tag: localize("تحديثات المشروعات", "Project update"),
     title: localize(
       "استكمال منظومة تجهيز غرف العمليات الكبرى",
@@ -441,7 +450,7 @@ export const newsItems = [
   },
   {
     slug: "critical-maintenance",
-    image: "/images/projects/icu.png",
+    image: "/images/news/preventive-maintenance.png",
     tag: localize("الصيانة والتشغيل", "Maintenance & operations"),
     title: localize(
       "لماذا تبدأ موثوقية المنشآت الحيوية بالصيانة الوقائية؟",
@@ -455,7 +464,7 @@ export const newsItems = [
   },
   {
     slug: "standby-power",
-    image: "/images/projects/generator.png",
+    image: "/images/news/standby-power-test.png",
     tag: localize("حلول الطاقة", "Power systems"),
     title: localize(
       "رفع جاهزية أنظمة الديزل والطاقة الاحتياطية",
@@ -545,9 +554,52 @@ export const faqs = [
   },
 ];
 
-export const clients = [
-  localize("الهيئة العربية للتصنيع", "Arab Organization for Industrialization"),
-  localize("مصنع أبو زعبل", "Abu Zaabal Factory"),
-  localize("جامعة المنصورة", "Mansoura University"),
-  localize("مديرية الشؤون الصحية", "Health Affairs Directorate"),
+export const partners = [
+  {
+    name: localize(
+      "شركة أبو زعبل للصناعات المتخصصة",
+      "Abu Zaabal Specialized Industries",
+    ),
+    logo: "/images/partners/azsi.webp",
+  },
+  {
+    name: localize(
+      "الهيئة العربية للتصنيع",
+      "Arab Organization for Industrialization",
+    ),
+    logo: "/images/partners/aoi.webp",
+  },
+  {
+    name: localize("جامعة المنصورة", "Mansoura University"),
+    logo: "/images/partners/mansoura-university.webp",
+  },
+  {
+    name: localize(
+      "مديرية الشؤون الصحية بكفر الشيخ",
+      "Kafr El Sheikh Health Directorate",
+    ),
+    logo: "/images/partners/kafr-el-sheikh-health.webp",
+  },
+  {
+    name: localize("مستشفى قفط التخصصي", "Qeft Specialized Hospital"),
+    logo: "/images/partners/qeft-hospital.webp",
+  },
+  {
+    name: localize(
+      "مديرية الصحة والسكان بالبحيرة",
+      "Beheira Health Directorate",
+    ),
+    logo: "/images/partners/beheira-health.webp",
+  },
+  {
+    name: localize(
+      "مديرية الشؤون الصحية ببني سويف",
+      "Beni Suef Health Directorate",
+    ),
+    logo: "/images/partners/beni-suef-health.webp",
+  },
+  {
+    name: localize("جامعة أسيوط", "Assiut University"),
+    logo: "/images/partners/assiut-university.webp",
+  },
 ];

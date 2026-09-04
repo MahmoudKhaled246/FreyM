@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Quote } from "lucide-react";
-import { CompanyCard, LeadershipSpotlight, ValueCard } from "@/components/cards";
+import { CompanyCard, ValueCard } from "@/components/cards";
+import { AnimatedStats } from "@/components/animated-stats";
+import { CEOMessageSection } from "@/components/ceo-message";
 import { Reveal } from "@/components/reveal";
 import { T } from "@/components/preferences";
 import { PageHero, SectionHeading } from "@/components/ui";
-import { companies, executiveLeader, leadershipMessage, localize, values, whyUs } from "@/lib/content";
+import { companies, localize, values, whyUs } from "@/lib/content";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -22,8 +23,8 @@ export default function AboutPage() {
       <PageHero
         image="/images/heroes/about.png"
         eyebrow={localize(
-          "إرث هندسي يمتد لأكثر من 15 عامًا",
-          "An engineering legacy spanning 15+ years",
+          "إرث هندسي يمتد عبر 15 عامًا",
+          "An engineering legacy spanning 15 years",
         )}
         title={localize(
           "قصة عراقة وابتكار",
@@ -38,9 +39,10 @@ export default function AboutPage() {
         <div className="container about-split">
           <Reveal className="about-visual">
             <Image
-              src="/images/about/team-site.png"
+              src="/images/about/engineering-team-hd.png"
               alt="فريق هندسي يراجع مخططات مشروع إنشائي"
               fill
+              quality={90}
               sizes="(max-width: 900px) 100vw, 50vw"
             />
           </Reveal>
@@ -69,32 +71,14 @@ export default function AboutPage() {
                 )}
               />
             </p>
-            <div
-              className="hero-stats"
-              style={{ marginInline: 0, marginTop: 30 }}
-            >
-              {[
-                {
-                  v: "+15",
-                  l: localize("عامًا من الخبرة", "Years of expertise"),
-                },
-                {
-                  v: "+789",
-                  l: localize("مشروعًا منجزًا", "Projects delivered"),
-                },
-                {
-                  v: "+485",
-                  l: localize("عميلًا وشريكًا", "Clients and partners"),
-                },
-              ].map((item) => (
-                <div className="hero-stat" key={item.v}>
-                  <strong dir="ltr">{item.v}</strong>
-                  <span>
-                    <T value={item.l} />
-                  </span>
-                </div>
-              ))}
-            </div>
+            <AnimatedStats
+              className="about-stats"
+              items={[
+                { value: 15, label: localize("عامًا من الخبرة", "Years of expertise") },
+                { value: 789, label: localize("مشروعًا منجزًا", "Projects delivered") },
+                { value: 485, label: localize("عميلًا وشريكًا", "Clients and partners") },
+              ]}
+            />
           </Reveal>
         </div>
       </section>
@@ -145,24 +129,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <section className="section section-muted" id="leadership-message">
-        <div className="container leadership-message">
-          <Reveal className="leadership-message-mark"><Quote size={44} /></Reveal>
-          <Reveal className="leadership-message-copy">
-            <SectionHeading
-              eyebrow={localize("رؤية تقود التنفيذ", "A delivery-led vision")}
-              title={leadershipMessage.title}
-            />
-            {leadershipMessage.paragraphs.map((paragraph) => (
-              <p key={paragraph.ar}><T value={paragraph} /></p>
-            ))}
-            <div className="leadership-signature">
-              <strong><T value={executiveLeader.name} /></strong>
-              <span><T value={executiveLeader.role} /></span>
-            </div>
-          </Reveal>
-        </div>
-      </section>
       <section className="section" id="why-us">
         <div className="container">
           <SectionHeading
@@ -200,28 +166,13 @@ export default function AboutPage() {
               <CompanyCard
                 key={company.number}
                 company={company}
-                featured={index === 1}
                 index={index}
               />
             ))}
           </div>
         </div>
       </section>
-      <section className="section" id="team">
-        <div className="container">
-          <SectionHeading
-            centered
-            title={localize("القيادة التنفيذية", "Executive leadership")}
-            body={localize(
-              "قيادة تنفيذية تجمع بين الخبرة الهندسية والرؤية المؤسسية وتقود المجموعة نحو القمة.",
-              "Executive leadership combining engineering expertise with a clear institutional vision.",
-            )}
-          />
-          <div className="leadership-spotlight">
-            <LeadershipSpotlight leader={executiveLeader} />
-          </div>
-        </div>
-      </section>
+      <CEOMessageSection />
     </>
   );
 }

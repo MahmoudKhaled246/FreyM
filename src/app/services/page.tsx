@@ -24,7 +24,7 @@ export default function ServicesPage() {
       <section className="section">
         <div className="container">
           <SectionHeading centered title={localize("منهجية العمل الهندسية", "Our engineering methodology")} body={localize("نتبع دورة حياة دقيقة للمشروع تضمن الجودة من الفكرة وحتى التشغيل النهائي.", "A governed project lifecycle protects quality from initial idea through final operation.")} />
-          <div className="process-grid">{processSteps.map((step,index)=><Reveal className="process-step" key={step.ar} delay={index*50}><strong>{String(index+1).padStart(2,"0")}</strong><h3><T value={step} /></h3><p><T value={localize("إجراءات موثقة وواضحة", "Documented and controlled")} /></p></Reveal>)}</div>
+          <div className="process-grid">{processSteps.map((step,index)=><Reveal className="process-step" key={step.ar} delay={index*50} tabIndex={0}><strong>{String(index+1).padStart(2,"0")}</strong><h3><T value={step} /></h3><p><T value={localize("إجراءات موثقة وواضحة", "Documented and controlled")} /></p></Reveal>)}</div>
         </div>
       </section>
       <CTA title={localize("هل تبحث عن شريك هندسي موثوق؟", "Looking for a trusted engineering partner?")} body={localize("نحن هنا لتحويل رؤيتك إلى واقع ملموس بدقة هندسية لا تضاهى. تواصل مع خبرائنا اليوم.", "We turn your vision into a rigorously delivered reality. Speak with our engineering team today.")} />

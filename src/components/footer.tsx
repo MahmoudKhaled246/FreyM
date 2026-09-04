@@ -10,7 +10,7 @@ export function Footer() {
       <div className="container footer-grid">
         <div className="footer-about">
           <Brand compact />
-          <p><T value={localize("نبني المستقبل بدقة الحاضر وعراقة الماضي. مجموعة هندسية متكاملة تخدم كافة القطاعات الإنشائية والتوريدات.", "Building the future with the precision of today and the experience of generations—an integrated engineering group serving critical sectors.")} /></p>
+          <p><T value={localize("15 عامًا من الخبرة نبني بها المستقبل بدقة الحاضر، عبر مجموعة هندسية متكاملة تخدم قطاعات التشييد والتوريدات.", "Building the future with 15 years of experience and the precision of today—an integrated engineering group serving construction and supply sectors.")} /></p>
         </div>
         <div>
           <h3><T value={localize("روابط سريعة", "Quick links")} /></h3>
