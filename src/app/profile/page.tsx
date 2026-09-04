@@ -14,7 +14,9 @@ export const metadata: Metadata = createPageMetadata({
   image: "/images/heroes/profile.png",
 });
 
-const activePrograms = [services[0], services[3], services[6]];
+const activePrograms = services.filter((service) =>
+  ["construction", "medical", "maintenance"].includes(service.slug),
+);
 
 const controls = [
   { icon: ClipboardCheck, title: localize("خطة تنفيذ موثقة", "Documented delivery plan"), body: localize("مسؤوليات ومراحل اعتماد واضحة قبل بدء العمل.", "Clear ownership and approvals before work begins.") },
