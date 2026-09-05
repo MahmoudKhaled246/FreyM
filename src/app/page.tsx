@@ -87,6 +87,19 @@ export default function HomePage() {
           } as React.CSSProperties
         }
       >
+        <video
+          className="home-hero-video"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster="/images/heroes/home.png"
+          aria-hidden="true"
+          tabIndex={-1}
+        >
+          <source src="/videos/frey-m-hero.mp4" type="video/mp4" />
+        </video>
         <Reveal className="container home-hero-inner">
           <div className="hero-badge">
             <T
