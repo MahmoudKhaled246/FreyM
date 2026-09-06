@@ -13,10 +13,11 @@ import {
   Sun,
   X,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Brand } from "@/components/brand";
 import { T, useLocalized, usePreferences } from "@/components/preferences";
 import { common, localize } from "@/lib/content";
+import { scrollToTop } from "@/lib/scroll";
 
 export function Header() {
   const pathname = usePathname();
@@ -77,51 +78,51 @@ export function Header() {
             )}
           >
             <div className="topbar-marquee-track">
-              <div
-                className="topbar-marquee-group"
-                dir={language === "ar" ? "rtl" : "ltr"}
-              >
-                <span>
-                  <Clock3 size={15} />
-                  <T
-                    value={localize(
-                      "ساعات العمل: السبت - الخميس، 9:00 ص - 5:00 م",
-                      "Hours: Sat–Thu, 9:00 AM–5:00 PM",
-                    )}
-                  />
-                </span>
-                <a dir="ltr" href={`tel:${common.phone}`}>
-                  <Phone size={15} />
-                  {common.phone}
-                </a>
-                <a dir="ltr" href={`mailto:${common.email}`}>
-                  <Mail size={15} />
-                  {common.email}
-                </a>
-              </div>
-              <div
-                className="topbar-marquee-group"
-                dir={language === "ar" ? "rtl" : "ltr"}
-                aria-hidden="true"
-              >
-                <span>
-                  <Clock3 size={15} />
-                  <T
-                    value={localize(
-                      "ساعات العمل: السبت - الخميس، 9:00 ص - 5:00 م",
-                      "Hours: Sat–Thu, 9:00 AM–5:00 PM",
-                    )}
-                  />
-                </span>
-                <span dir="ltr">
-                  <Phone size={15} />
-                  {common.phone}
-                </span>
-                <span dir="ltr">
-                  <Mail size={15} />
-                  {common.email}
-                </span>
-              </div>
+              {[false, true].map((isDuplicate) => (
+                <div
+                  key={isDuplicate ? "marquee-copy" : "marquee-original"}
+                  className="topbar-marquee-group"
+                  aria-hidden={isDuplicate ? true : undefined}
+                >
+                  {[0, 1, 2].map((index) => {
+                    const isExtra = index > 0;
+                    return (
+                      <Fragment key={index}>
+                        <span
+                          className={isExtra ? "topbar-marquee-extra" : undefined}
+                          dir={language === "ar" ? "rtl" : "ltr"}
+                        >
+                          <Clock3 size={15} />
+                          <T
+                            value={localize(
+                              "ساعات العمل: السبت - الخميس، 9:00 ص - 5:00 م",
+                              "Hours: Sat–Thu, 9:00 AM–5:00 PM",
+                            )}
+                          />
+                        </span>
+                        <a
+                          className={isExtra ? "topbar-marquee-extra" : undefined}
+                          dir="ltr"
+                          href={`tel:${common.phone}`}
+                          tabIndex={isDuplicate ? -1 : undefined}
+                        >
+                          <Phone size={15} />
+                          {common.phone}
+                        </a>
+                        <a
+                          className={isExtra ? "topbar-marquee-extra" : undefined}
+                          dir="ltr"
+                          href={`mailto:${common.email}`}
+                          tabIndex={isDuplicate ? -1 : undefined}
+                        >
+                          <Mail size={15} />
+                          {common.email}
+                        </a>
+                      </Fragment>
+                    );
+                  })}
+                </div>
+              ))}
             </div>
           </div>
           <div className="control-row">
@@ -191,6 +192,12 @@ export function Header() {
                   key={item.href}
                   className={`nav-item ${active ? "active" : ""}`}
                   href={item.href}
+                  onClick={(event) => {
+                    if (item.href === "/" && pathname === "/") {
+                      event.preventDefault();
+                      scrollToTop({ resetUrl: true });
+                    }
+                  }}
                   aria-current={active ? "page" : undefined}
                 >
                   <T value={item.label} />
@@ -225,7 +232,7 @@ export function Header() {
         aria-hidden={!open}
       >
         <div className="mobile-menu-head">
-          <Brand compact />
+          <Brand compact onClick={() => setOpen(false)} />
           <button
             className="mobile-menu-button"
             onClick={() => setOpen(false)}
@@ -281,7 +288,13 @@ export function Header() {
                 key={item.href}
                 className={active ? "active" : ""}
                 href={item.href}
-                onClick={() => setOpen(false)}
+                onClick={(event) => {
+                  setOpen(false);
+                  if (item.href === "/" && pathname === "/") {
+                    event.preventDefault();
+                    scrollToTop({ resetUrl: true });
+                  }
+                }}
                 onNavigate={() => setOpen(false)}
                 aria-current={active ? "page" : undefined}
               >

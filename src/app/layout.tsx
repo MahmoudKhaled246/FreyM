@@ -3,6 +3,7 @@ import { Cairo, Inter } from "next/font/google";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { PreferencesProvider } from "@/components/preferences";
+import { ScrollToTop } from "@/components/scroll-to-top";
 import {
   absoluteUrl,
   isIndexableDeployment,
@@ -167,6 +168,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <Header />
           <main id="main-content">{children}</main>
           <Footer />
+          <ScrollToTop />
         </PreferencesProvider>
       </body>
     </html>
