@@ -5,9 +5,9 @@ import { localize } from "@/lib/content";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "مشروعات فري أم الهندسية",
+  title: "مشروعات فري إم الهندسية",
   description:
-    "استعرض مشروعات مجموعة فري أم في التشييد والصيانة والتجهيزات الطبية والتوريدات للقطاعات الحكومية والمنشآت الحيوية في مصر.",
+    "استعرض مشروعات مجموعة فري إم في التشييد والصيانة والتجهيزات الطبية والتوريدات للقطاعات الحكومية والمنشآت الحيوية في مصر.",
   path: "/projects",
   image: "/images/heroes/projects.png",
 });
@@ -15,11 +15,30 @@ export const metadata: Metadata = createPageMetadata({
 export default function ProjectsPage() {
   return (
     <>
-      <PageHero image="/images/heroes/projects.png" eyebrow={localize("سجل الإنجازات الهندسية", "Engineering achievements")} title={localize("مشروعات مجموعة فري أم", "Frey-M Group projects")} body={localize("نستعرض هنا نخبة من أعمالنا في مجالات التشييد، الصيانة، والديكور والتوريدات التي تم تنفيذها لصالح كبرى المؤسسات الحكومية والقطاعات الحيوية.", "Selected construction, maintenance, fit-out and supply work delivered for public institutions and essential sectors.")} />
+      <PageHero
+        image="/images/heroes/projects.png"
+        eyebrow={localize("سجل الإنجازات الهندسية", "Engineering achievements")}
+        title={localize("مشروعات مجموعة فري إم", "Frey-M Group projects")}
+        body={localize(
+          "نستعرض هنا نخبة من أعمالنا في مجالات التشييد، الصيانة، والديكور والتوريدات التي تم تنفيذها لصالح كبرى المؤسسات الحكومية والقطاعات الحيوية.",
+          "Selected construction, maintenance, fit-out and supply work delivered for public institutions and essential sectors.",
+        )}
+      />
       <section className="section">
-        <div className="container"><ProjectsGrid /></div>
+        <div className="container">
+          <ProjectsGrid />
+        </div>
       </section>
-      <CTA title={localize("هل لديك مشروع قادم يحتاج للخبرة؟", "Does your next project need proven expertise?")} body={localize("سواء كان في التشييد أو الصيانة أو التجهيزات، نحن نوفر الحلول الهندسية المتكاملة التي تضمن النجاح.", "From construction and maintenance to specialist fit-outs, we provide the integrated engineering path to success.")} />
+      <CTA
+        title={localize(
+          "هل لديك مشروع قادم يحتاج للخبرة؟",
+          "Does your next project need proven expertise?",
+        )}
+        body={localize(
+          "سواء كان في التشييد أو الصيانة أو التجهيزات، نحن نوفر الحلول الهندسية المتكاملة التي تضمن النجاح.",
+          "From construction and maintenance to specialist fit-outs, we provide the integrated engineering path to success.",
+        )}
+      />
     </>
   );
 }

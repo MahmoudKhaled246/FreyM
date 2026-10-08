@@ -21,9 +21,9 @@ function resolveSiteUrl() {
 export const siteConfig = {
   name: "Frey-M",
   fullName: "Frey-M Company Group",
-  arabicName: "مجموعة فري أم",
+  arabicName: "مجموعة فري إم",
   description:
-    "مجموعة فري أم للمقاولات والهندسة في مصر: حلول متكاملة في التشييد والصيانة والتجهيزات الطبية والتوريدات والتصميم الداخلي.",
+    "مجموعة فري إم للمقاولات والهندسة في مصر: حلول متكاملة في التشييد والصيانة والتجهيزات الطبية والتوريدات والتصميم الداخلي.",
   url: resolveSiteUrl(),
   locale: "ar_EG",
   alternateLocale: "en_US",

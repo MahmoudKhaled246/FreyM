@@ -10,9 +10,9 @@ import { companies, localize, values, whyUs } from "@/lib/content";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "عن مجموعة فري أم",
+  title: "عن مجموعة فري إم",
   description:
-    "تعرف على قصة مجموعة فري أم للمقاولات والهندسة، رؤيتنا وقيمنا وخبرات فريق القيادة في تنفيذ المشروعات داخل مصر.",
+    "تعرف على قصة مجموعة فري إم للمقاولات والهندسة، رؤيتنا وقيمنا وخبرات فريق القيادة في تنفيذ المشروعات داخل مصر.",
   path: "/about",
   image: "/images/heroes/about.png",
 });
@@ -58,7 +58,7 @@ export default function AboutPage() {
             <p>
               <T
                 value={localize(
-                  "تمتد مجموعة فري أم عبر مسيرة من الخبرات المتراكمة في البناء والتشييد والصيانة والتجهيز. تأسست رؤيتنا على إيمان راسخ بأن الجودة ليست خيارًا إضافيًا، بل هي أساس كل علاقة وكل مشروع.",
+                  "تمتد مجموعة فري إم عبر مسيرة من الخبرات المتراكمة في البناء والتشييد والصيانة والتجهيز. تأسست رؤيتنا على إيمان راسخ بأن الجودة ليست خيارًا إضافيًا، بل هي أساس كل علاقة وكل مشروع.",
                   "Frey-M has grown through accumulated expertise in construction, maintenance and fit-out. Our work is grounded in the belief that quality is not an option—it is the foundation of every relationship and project.",
                 )}
               />
@@ -74,9 +74,18 @@ export default function AboutPage() {
             <AnimatedStats
               className="about-stats"
               items={[
-                { value: 15, label: localize("عامًا من الخبرة", "Years of expertise") },
-                { value: 789, label: localize("مشروعًا منجزًا", "Projects delivered") },
-                { value: 485, label: localize("عميلًا وشريكًا", "Clients and partners") },
+                {
+                  value: 15,
+                  label: localize("عامًا من الخبرة", "Years of expertise"),
+                },
+                {
+                  value: 789,
+                  label: localize("مشروعًا منجزًا", "Projects delivered"),
+                },
+                {
+                  value: 485,
+                  label: localize("عميلًا وشريكًا", "Clients and partners"),
+                },
               ]}
             />
           </Reveal>
@@ -104,7 +113,7 @@ export default function AboutPage() {
             <p>
               <T
                 value={localize(
-                  "الالتزام بأمانة المهنة وإتقان التنفيذ والتطوير المستمر للأفكار والمعدات، بما يحقق أعلى مستويات الجودة والسلامة في كل مشروع.",
+                  "الالتزام بإمانة المهنة وإتقان التنفيذ والتطوير المستمر للأفكار والمعدات، بما يحقق أعلى مستويات الجودة والسلامة في كل مشروع.",
                   "To uphold professional integrity, disciplined delivery and continuous improvement in every project.",
                 )}
               />
@@ -133,8 +142,14 @@ export default function AboutPage() {
         <div className="container">
           <SectionHeading
             centered
-            eyebrow={localize("خبرة تُترجم إلى قيمة", "Experience translated into value")}
-            title={localize("لماذا يختار العملاء Frey-M؟", "Why clients choose Frey-M")}
+            eyebrow={localize(
+              "خبرة تُترجم إلى قيمة",
+              "Experience translated into value",
+            )}
+            title={localize(
+              "لماذا يختار العملاء Frey-M؟",
+              "Why clients choose Frey-M",
+            )}
             body={localize(
               "نحوّل خبرة الموقع إلى قرارات أوضح وتنفيذ أكثر انضباطًا ونتائج قابلة للقياس.",
               "We turn field expertise into clearer decisions, disciplined delivery and measurable outcomes.",
@@ -142,10 +157,18 @@ export default function AboutPage() {
           />
           <div className="why-grid">
             {whyUs.map((item, index) => (
-              <Reveal className="why-card" key={item.number} delay={(index % 3) * 70}>
+              <Reveal
+                className="why-card"
+                key={item.number}
+                delay={(index % 3) * 70}
+              >
                 <span>{item.number}</span>
-                <h3><T value={item.title} /></h3>
-                <p><T value={item.body} /></p>
+                <h3>
+                  <T value={item.title} />
+                </h3>
+                <p>
+                  <T value={item.body} />
+                </p>
               </Reveal>
             ))}
           </div>

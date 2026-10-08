@@ -4,21 +4,25 @@ import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { PreferencesProvider } from "@/components/preferences";
 import { ScrollToTop } from "@/components/scroll-to-top";
-import {
-  absoluteUrl,
-  isIndexableDeployment,
-  siteConfig,
-} from "@/lib/seo";
+import { absoluteUrl, isIndexableDeployment, siteConfig } from "@/lib/seo";
 import "./globals.css";
 
-const arabic = Cairo({ subsets: ["arabic"], variable: "--font-arabic", display: "swap" });
-const latin = Inter({ subsets: ["latin"], variable: "--font-latin", display: "swap" });
+const arabic = Cairo({
+  subsets: ["arabic"],
+  variable: "--font-arabic",
+  display: "swap",
+});
+const latin = Inter({
+  subsets: ["latin"],
+  variable: "--font-latin",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   applicationName: siteConfig.name,
   title: {
-    default: "Frey-M | مجموعة فري أم للمقاولات والهندسة",
+    default: "Frey-M | مجموعة فري إم للمقاولات والهندسة",
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -27,7 +31,7 @@ export const metadata: Metadata = {
     "FreyM",
     "Frey M",
     "Frey-M Company Group",
-    "مجموعة فري أم",
+    "مجموعة فري إم",
     "فري ام",
     "شركة مقاولات في مصر",
     "مقاولات وتشييد",
@@ -41,7 +45,7 @@ export const metadata: Metadata = {
     canonical: absoluteUrl("/"),
   },
   openGraph: {
-    title: "Frey-M | مجموعة فري أم للمقاولات والهندسة",
+    title: "Frey-M | مجموعة فري إم للمقاولات والهندسة",
     description: siteConfig.description,
     url: absoluteUrl("/"),
     siteName: siteConfig.name,
@@ -51,13 +55,13 @@ export const metadata: Metadata = {
     images: [
       {
         url: absoluteUrl("/images/heroes/home.png"),
-        alt: "Frey-M Company Group — مجموعة فري أم للمقاولات والهندسة",
+        alt: "Frey-M Company Group — مجموعة فري إم للمقاولات والهندسة",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Frey-M | مجموعة فري أم للمقاولات والهندسة",
+    title: "Frey-M | مجموعة فري إم للمقاولات والهندسة",
     description: siteConfig.description,
     images: [absoluteUrl("/images/heroes/home.png")],
   },
@@ -150,9 +154,19 @@ const preferenceScript = `(() => {
   } catch (_) {}
 })();`;
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ar" dir="rtl" data-theme="dark" data-lang="ar" data-scroll-behavior="smooth" suppressHydrationWarning className={`${arabic.variable} ${latin.variable}`}>
+    <html
+      lang="ar"
+      dir="rtl"
+      data-theme="dark"
+      data-lang="ar"
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+      className={`${arabic.variable} ${latin.variable}`}
+    >
       <head>
         <script
           type="application/ld+json"
@@ -164,7 +178,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body>
         <PreferencesProvider>
-          <a className="skip-link" href="#main-content">تجاوز إلى المحتوى</a>
+          <a className="skip-link" href="#main-content">
+            تجاوز إلى المحتوى
+          </a>
           <Header />
           <main id="main-content">{children}</main>
           <Footer />

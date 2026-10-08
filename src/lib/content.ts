@@ -18,10 +18,19 @@ export const navigation: NavigationItem[] = [
     label: localize("عن الشركة", "About"),
     children: [
       { href: "/about#story", label: localize("من نحن", "Who we are") },
-      { href: "/about#values", label: localize("قيمنا ومبادئنا", "Values & principles") },
-      { href: "/about#leadership-message", label: localize("رسالة الرئيس التنفيذي", "CEO message") },
+      {
+        href: "/about#values",
+        label: localize("قيمنا ومبادئنا", "Values & principles"),
+      },
+      {
+        href: "/about#leadership-message",
+        label: localize("رسالة الرئيس التنفيذي", "CEO message"),
+      },
       { href: "/about#why-us", label: localize("ما يميزنا", "Why Frey-M") },
-      { href: "/about#companies", label: localize("شركات المجموعة", "Group companies") },
+      {
+        href: "/about#companies",
+        label: localize("شركات المجموعة", "Group companies"),
+      },
     ],
   },
   { href: "/services", label: localize("خدماتنا", "Services") },
@@ -30,10 +39,22 @@ export const navigation: NavigationItem[] = [
     label: localize("مشروعاتنا", "Projects"),
     children: [
       { href: "/projects", label: localize("كل المشروعات", "All projects") },
-      { href: "/projects#construction", label: localize("المقاولات العامة", "General contracting") },
-      { href: "/projects#maintenance", label: localize("الصيانة والتشغيل", "Maintenance") },
-      { href: "/projects#interiors", label: localize("الديكورات والتشطيبات", "Décor & finishes") },
-      { href: "/projects#supplies", label: localize("التوريدات العمومية", "General supplies") },
+      {
+        href: "/projects#construction",
+        label: localize("المقاولات العامة", "General contracting"),
+      },
+      {
+        href: "/projects#maintenance",
+        label: localize("الصيانة والتشغيل", "Maintenance"),
+      },
+      {
+        href: "/projects#interiors",
+        label: localize("الديكورات والتشطيبات", "Décor & finishes"),
+      },
+      {
+        href: "/projects#supplies",
+        label: localize("التوريدات العمومية", "General supplies"),
+      },
       // { href: "/services#soil-dewatering", label: localize("تجفيف التربة ونزح المياه", "Soil dewatering") },
     ],
   },
@@ -41,8 +62,14 @@ export const navigation: NavigationItem[] = [
     href: "/profile",
     label: localize("سابقة الأعمال", "Work profile"),
     children: [
-      { href: "/profile#current", label: localize("الأعمال الحالية", "Current work") },
-      { href: "/profile#previous", label: localize("الأعمال السابقة", "Previous work") },
+      {
+        href: "/profile#current",
+        label: localize("الأعمال الحالية", "Current work"),
+      },
+      {
+        href: "/profile#previous",
+        label: localize("الأعمال السابقة", "Previous work"),
+      },
     ],
   },
   { href: "/news", label: localize("الأخبار", "News") },
@@ -51,7 +78,7 @@ export const navigation: NavigationItem[] = [
 
 export const common = {
   brandLine: localize(
-    "مجموعة فري أم للمقاولات والاستشارات",
+    "مجموعة فري إم للمقاولات والاستشارات",
     "Contracting & consultancy group",
   ),
   nav: navigation,
@@ -124,7 +151,7 @@ export const services = [
         "التوريدات الطبية والدوائية",
         "Medical and pharmaceutical supplies",
       ),
-      localize("أنظمة الأمن والطاقة", "Security and power systems"),
+      localize("أنظمة الإمن والطاقة", "Security and power systems"),
       localize("مولدات الديزل والطاقة", "Diesel and power generators"),
     ],
     link: localize("قائمة التوريدات", "Supply catalogue"),
@@ -301,7 +328,7 @@ export const projects = [
       "Government elevator modernization",
     ),
     description: localize(
-      "مشروع تحديث أنظمة التشغيل والأمان للمصاعد ورفع مستوى الكفاءة والاعتمادية.",
+      "مشروع تحديث أنظمة التشغيل والإمان للمصاعد ورفع مستوى الكفاءة والاعتمادية.",
       "Modernized lift controls and safety systems for stronger reliability and performance.",
     ),
   },
@@ -403,14 +430,17 @@ export const whyUs = [
     number: "06",
     title: localize("كوادر متخصصة", "Specialist teams"),
     body: localize(
-      "فرق متعددة التخصصات تعمل بروح واحدة ومسؤولية واضحة في كل مرحلة.",
+      "فرق متعددة التخصصات تعمل بروح واحدة ومسئولية واضحة في كل مرحلة.",
       "Multidisciplinary teams work as one, with clear ownership at every stage.",
     ),
   },
 ];
 
 export const leadershipMessage = {
-  eyebrow: localize("من الحلم إلى أثرٍ مستدام", "From a dream to lasting impact"),
+  eyebrow: localize(
+    "من الحلم إلى أثرٍ مستدام",
+    "From a dream to lasting impact",
+  ),
   title: localize("رسالة الرئيس التنفيذي", "A message from the CEO"),
   lead: localize(
     "ثقة عملائنا هي أساس نجاحنا، والجودة هي خيارنا الوحيد.",
@@ -418,11 +448,11 @@ export const leadershipMessage = {
   ),
   paragraphs: [
     localize(
-      "بدأت رحلتنا حلمًا، ثم أصبحت — بفضل الله وجهود فريقنا المخلص — واقعًا يتقدم بثبات. عبرنا التحديات وحققنا نجاحات متتالية حتى رسّخت Frey-M مكانتها بين الشركات الموثوقة في مصر، وما زلنا نطوّر قدراتنا وخططنا الاستراتيجية لنشارك بفاعلية في النهضة العمرانية والاقتصادية.",
+      "بدأت رحلتنا حلمًا، ثم أصبحت — بفضل الله ثم جهود فريقنا المخلص — واقعًا يتقدم بثبات. عبرنا التحديات وحققنا نجاحات متتالية حتى رسّخت Frey-M مكانتها بين الشركات الموثوقة في مصر، وما زلنا نطوّر قدراتنا وخططنا الاستراتيجية لنشارك بفاعلية في النهضة العمرانية والاقتصادية.",
       "Our journey began as a dream and, by God's grace and the dedication of our team, became a reality that continues to advance. We overcame challenges and built Frey-M into a trusted name in Egypt, while continuously developing our capabilities to contribute to the country's urban and economic progress.",
     ),
     localize(
-      "نجعل الجودة خيارًا وحيدًا لا بديل له؛ من الطرق والجسور والمنشآت المعقدة والمباني المرموقة، إلى أعمال البنية التحتية والتجهيزات والصيانة الطبية والكهروميكانيكية والإلكترونية. يقف خلف كل إنجاز فريق يعمل بروح واحدة ومسؤولية كاملة، لنوفي بالتزاماتنا في جميع الظروف ونقدّم نتائج تتجاوز تطلعات عملائنا.",
+      "نجعل الجودة خيارًا وحيدًا لا بديل عنه؛ من الطرق والجسور والمنشآت المعقدة والمباني المرموقة، إلى أعمال البنية التحتية والتجهيزات والصيانة الطبية والكهروميكانيكية والإلكترونية. يقف خلف كل إنجاز فريق يعمل بروح واحدة ومسئولية كاملة، حتى نفي بالتزاماتنا في جميع الظروف والأحوال، ولكي نقدّم نتائج تُجَاوِزُ تطلعات عملائنا.",
       "Quality is our only standard—from roads, bridges and complex structures to distinguished buildings, infrastructure, specialist fit-outs, and medical, electromechanical and electronic maintenance. Behind every achievement is one accountable team, committed to delivering in every circumstance and exceeding our clients' expectations.",
     ),
   ],
@@ -493,7 +523,7 @@ export const companies = [
   {
     number: "02",
     title: localize(
-      "مكتب ثري 3 أم للمقاولات العمومية",
+      "مكتب ثري 3 إم للمقاولات العمومية",
       "3M General Contracting Office",
     ),
     body: localize(
@@ -524,7 +554,7 @@ export const faqs = [
   },
   {
     q: localize(
-      "ما هي الكيانات التي تضمها مجموعة فري أم؟",
+      "ما هي الكيانات التي تضمها مجموعة فري إم؟",
       "Which companies make up the group?",
     ),
     a: localize(

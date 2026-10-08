@@ -49,6 +49,21 @@ const stats = [
   },
 ];
 
+const heroHighlights = [
+  {
+    icon: BadgeCheck,
+    label: localize("خبرة موثوقة", "Trusted expertise"),
+  },
+  {
+    icon: ShieldCheck,
+    label: localize("جودة مُحكمة", "Measured quality"),
+  },
+  {
+    icon: Headphones,
+    label: localize("دعم مستمر", "Ongoing support"),
+  },
+];
+
 const promises = [
   {
     icon: BadgeCheck,
@@ -101,41 +116,62 @@ export default function HomePage() {
           <source src="/videos/frey-m-hero.mp4" type="video/mp4" />
         </video>
         <Reveal className="container home-hero-inner">
-          <div className="hero-badge">
-            <T
-              value={localize(
-                "FREY-M COMPANY GROUP • التميز الهندسي المتكامل",
-                "FREY-M COMPANY GROUP • INTEGRATED ENGINEERING",
-              )}
-            />
+          <div className="home-hero-copy">
+            <div className="hero-badge">
+              <span aria-hidden="true" />
+              <T
+                value={localize(
+                  "حلول هندسية متكاملة",
+                  "Integrated engineering solutions",
+                )}
+              />
+            </div>
+            <h1>
+              <span className="home-hero-title-line">
+                <T value={localize("نبني ما", "We build what")} />
+              </span>
+              <span className="home-hero-title-line home-hero-title-accent">
+                <T value={localize("يستحق أن يدوم", "deserves to last")} />
+              </span>
+            </h1>
+            <p className="lead">
+              <T
+                value={localize(
+                  "حلول متكاملة في التشييد والهندسة وإدارة المشروعات وأعمال الصيانة والتوريدات العمومية، تجمع بين عراقة الخبرة ودقة المعايير وجودة التنفيذ الاستثنائية.",
+                  "Integrated construction, engineering, project-management, maintenance and supply solutions—uniting proven experience with exacting standards and exceptional delivery.",
+                )}
+              />
+            </p>
+            <ul className="home-hero-highlights">
+              {heroHighlights.map(({ icon: Icon, label }) => (
+                <li key={label.ar}>
+                  <span className="home-hero-highlight-icon" aria-hidden="true">
+                    <Icon size={17} strokeWidth={2.35} />
+                  </span>
+                  <T value={label} />
+                </li>
+              ))}
+            </ul>
+            <div className="button-row">
+              <Link className="button button-primary" href="/projects">
+                <T value={common.exploreProjects} />
+                <ArrowLeft size={18} />
+              </Link>
+              <Link className="button button-secondary" href="/contact">
+                <T value={common.contactUs} />
+              </Link>
+            </div>
           </div>
-          <h1>
-            <T
-              value={localize(
-                "نبني ما يستحق أن يدوم",
-                "We build what deserves to last",
-              )}
-            />
-          </h1>
-          <p className="lead">
-            <T
-              value={localize(
-                "حلول متكاملة في التشييد والهندسة وإدارة المشروعات وأعمال الصيانة والتوريدات العمومية، تجمع بين عراقة الخبرة ودقة المعايير وجودة التنفيذ الاستثنائية.",
-                "Integrated construction, engineering, project-management, maintenance and supply solutions—uniting proven experience with exacting standards and exceptional delivery.",
-              )}
-            />
-          </p>
-          <div className="button-row">
-            <Link className="button button-primary" href="/projects">
-              <T value={common.exploreProjects} />
-              <ArrowLeft size={18} />
-            </Link>
-            <Link className="button button-secondary" href="/contact">
-              <T value={common.contactUs} />
-            </Link>
-          </div>
-          <AnimatedStats items={stats} />
+          <AnimatedStats items={stats} className="home-hero-stats" />
         </Reveal>
+        <div className="home-hero-note" aria-hidden="true">
+          <span>
+            <T value={localize("دقة في التخطيط", "Plan with precision")} />
+          </span>
+          <strong>
+            <T value={localize("إتقان في التنفيذ", "Deliver with mastery")} />
+          </strong>
+        </div>
       </section>
 
       <section className="feature-strip">
@@ -156,11 +192,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section company-film-section" aria-labelledby="company-film-title">
+      <section
+        className="section company-film-section"
+        aria-labelledby="company-film-title"
+      >
         <div className="container company-film-layout">
           <Reveal className="company-film-copy">
             <Eyebrow>
-              <T value={localize("فري أم عن قرب", "Frey-M in focus")} />
+              <T value={localize("فري إم عن قرب", "Frey-M in focus")} />
             </Eyebrow>
             <h2 id="company-film-title">
               <T
@@ -173,7 +212,7 @@ export default function HomePage() {
             <p>
               <T
                 value={localize(
-                  "لمحة سريعة عن فري أم، ورؤيتنا في تقديم أعمال هندسية وتنفيذية تقوم على الخبرة والدقة والجودة.",
+                  "لمحة سريعة عن فري إم، ورؤيتنا في تقديم أعمال هندسية وتنفيذية تقوم على الخبرة والدقة والجودة.",
                   "A brief look at Frey-M and our approach to engineering and delivery—built on experience, precision and quality.",
                 )}
               />
@@ -192,7 +231,7 @@ export default function HomePage() {
           <Reveal className="about-visual">
             <Image
               src="/images/about/construction-experience-hd.png"
-              alt="فريق فري أم الهندسي يراجع أعمال مشروع إنشائي"
+              alt="فريق فري إم الهندسي يراجع أعمال مشروع إنشائي"
               fill
               quality={90}
               sizes="(max-width: 900px) 100vw, 50vw"
@@ -202,7 +241,10 @@ export default function HomePage() {
               <div>
                 <small className="gold">
                   <T
-                    value={localize("شعارنا في الميدان ", "Our field principle ")}
+                    value={localize(
+                      "شعارنا في الميدان ",
+                      "Our field principle ",
+                    )}
                   />
                 </small>
                 <strong>
@@ -218,7 +260,7 @@ export default function HomePage() {
           </Reveal>
           <Reveal className="about-copy">
             <Eyebrow>
-              <T value={localize("عن مجموعة فري أم", "About Frey-M Group")} />
+              <T value={localize("عن مجموعة فري إم", "About Frey-M Group")} />
             </Eyebrow>
             <h2>
               <T
@@ -318,7 +360,12 @@ export default function HomePage() {
           />
           <div className="process-grid process-grid-six">
             {processSteps.slice(0, 6).map((step, index) => (
-              <Reveal className="process-step" key={step.ar} delay={index * 55} tabIndex={0}>
+              <Reveal
+                className="process-step"
+                key={step.ar}
+                delay={index * 55}
+                tabIndex={0}
+              >
                 <strong>{String(index + 1).padStart(2, "0")}</strong>
                 <h3>
                   <T value={step} />
@@ -341,14 +388,19 @@ export default function HomePage() {
         <div className="container">
           <SectionHeading
             eyebrow={localize("آخر الأخبار والرؤى", "News & insights")}
-            title={localize("من مواقعنا وغرفة الأخبار", "From our sites and newsroom")}
+            title={localize(
+              "من مواقعنا وغرفة الأخبار",
+              "From our sites and newsroom",
+            )}
             body={localize(
               "تحديثات مختارة من المشروعات وممارسات الصيانة والحلول الهندسية التي تطور أداء المنشآت.",
               "Selected project updates and practical insight into maintenance and engineering performance.",
             )}
           />
           <div className="news-grid">
-            {newsItems.map((item, index) => <NewsCard key={item.slug} item={item} index={index} />)}
+            {newsItems.map((item, index) => (
+              <NewsCard key={item.slug} item={item} index={index} />
+            ))}
           </div>
           <div className="section-action">
             <Link className="button button-secondary" href="/news">
@@ -384,7 +436,7 @@ export default function HomePage() {
           <SectionHeading
             centered
             eyebrow={localize("الهيكل المؤسسي", "Group structure")}
-            title={localize("شركات مجموعة فري أم", "Frey-M group companies")}
+            title={localize("شركات مجموعة فري إم", "Frey-M group companies")}
             body={localize(
               "ثلاثة كيانات تكاملية متخصصة تغطي كافة الأنشطة الهندسية والتنفيذية والتوريدات.",
               "Three complementary specialist entities across engineering, delivery and supply.",
@@ -430,7 +482,7 @@ export default function HomePage() {
               "Answers for our clients",
             )}
             body={localize(
-              "تعرف على تفاصيل خدماتنا وآليات التعاقد ونطاق أعمال مجموعة فري أم.",
+              "تعرف على تفاصيل خدماتنا وآليات التعاقد ونطاق أعمال مجموعة فري إم.",
               "Key details about our services, engagement model and capabilities.",
             )}
           />
