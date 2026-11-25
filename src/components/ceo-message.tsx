@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { LocalizedImage } from "@/components/localized-image";
 import { Quote } from "lucide-react";
 import { T } from "@/components/preferences";
 import { Reveal } from "@/components/reveal";
@@ -42,9 +42,9 @@ export function CEOMessageSection() {
         <Reveal className="ceo-portrait" delay={100}>
           <div className="ceo-portrait-frame">
             <span className="ceo-portrait-index" aria-hidden="true">01</span>
-            <Image
+            <LocalizedImage
               src={executiveLeader.image}
-              alt={executiveLeader.name.ar}
+              alt={executiveLeader.name}
               fill
               quality={90}
               sizes="(max-width: 700px) calc(100vw - 28px), (max-width: 1100px) 42vw, 440px"

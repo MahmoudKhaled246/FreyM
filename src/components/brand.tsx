@@ -1,8 +1,9 @@
 "use client";
 
-import Link from "next/link";
+import { LocalizedLink as Link } from "@/components/localized-link";
 import { usePathname } from "next/navigation";
 import type { MouseEvent } from "react";
+import { withoutLanguagePrefix } from "@/lib/locale";
 import { scrollToTop } from "@/lib/scroll";
 
 export function Brand({
@@ -20,7 +21,7 @@ export function Brand({
     onClick?.(event);
     if (event.defaultPrevented) return;
 
-    if (pathname === "/") {
+    if (withoutLanguagePrefix(pathname) === "/") {
       event.preventDefault();
       scrollToTop({ resetUrl: true });
     }

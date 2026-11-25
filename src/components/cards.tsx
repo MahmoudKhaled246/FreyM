@@ -1,6 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowUpLeft, BriefcaseBusiness, Building2, Droplets, HeartHandshake, Leaf, PackageOpen, Palette, ShieldCheck, Stethoscope, Wrench } from "lucide-react";
+import { LocalizedImage } from "@/components/localized-image";
+import { LocalizedLink as Link } from "@/components/localized-link";
+import { ArrowUpLeft, BriefcaseBusiness, Building2, Droplets, HeartHandshake, Leaf, PackageOpen, Palette, ShieldCheck, Stethoscope, Wrench, Zap, type LucideIcon } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { T } from "@/components/preferences";
 import { TextLink } from "@/components/ui";
@@ -24,22 +25,47 @@ const serviceIcons = {
   dewatering: Droplets,
 };
 
+const projectIcons: Record<string, LucideIcon> = {
+  "blood-bank": PackageOpen,
+  autoclave: Wrench,
+  icu: Stethoscope,
+  generator: Zap,
+  "operating-rooms": Stethoscope,
+  elevators: Building2,
+};
+
+function VisualPlaceholder({ icon: Icon, label }: { icon: LucideIcon; label: { ar: string; en: string } }) {
+  return (
+    <div className="card-visual-fallback" aria-hidden="true">
+      <span className="card-visual-brand">FREY-M / ENGINEERING</span>
+      <Icon size={58} strokeWidth={1.3} />
+      <span className="card-visual-label"><T value={label} /></span>
+    </div>
+  );
+}
+
 export function ServiceCard({ service, visual = false, index = 0 }: { service: Service; visual?: boolean; index?: number }) {
   const Icon = serviceIcons[service.icon as keyof typeof serviceIcons] ?? Building2;
   return (
     <Reveal id={service.slug} className={`service-card ${visual ? "visual" : ""}`} delay={Math.min(index, 2) * 70}>
-      {visual && (
+      {(visual || service.image) && (
         <div className="card-image">
-          <Image src={service.image} alt={service.title.ar} fill quality={90} sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
-          <span className="card-number">{service.number}</span>
+          {service.image ? (
+            <LocalizedImage src={service.image} alt={service.title} fill quality={90} sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
+          ) : (
+            <VisualPlaceholder icon={Icon} label={service.title} />
+          )}
+          {visual && <span className="card-number">{service.number}</span>}
         </div>
       )}
       <div className="service-card-body">
-        {!visual && <div className="icon-tile"><Icon size={23} /></div>}
+        {!visual && !service.image && <div className="icon-tile"><Icon size={23} /></div>}
         <h3><T value={service.title} /></h3>
         <p><T value={service.description} /></p>
         {!visual && <ul>{service.features.map((item) => <li key={item.ar}><ShieldCheck size={15} /><T value={item} /></li>)}</ul>}
-        <TextLink href={`/services#${service.slug}`}><T value={visual ? common.discoverMore : service.link} /></TextLink>
+        <TextLink href={visual ? `/services#${service.slug}` : `/contact?service=${service.slug}#contact-form`}>
+          <T value={visual ? common.discoverMore : { ar: "استفسر عن الخدمة", en: "Enquire about this service" }} />
+        </TextLink>
       </div>
     </Reveal>
   );
@@ -47,10 +73,18 @@ export function ServiceCard({ service, visual = false, index = 0 }: { service: S
 
 export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
   const href = `/projects/${project.slug}`;
+  const Icon = projectIcons[project.slug] ?? Building2;
   return (
     <Reveal className="project-card" delay={Math.min(index, 2) * 70}>
       <div className="card-image">
-        <Image src={project.image} alt={`${project.title.ar} — ${project.location.ar}`} fill quality={90} sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
+        {project.image ? (
+          <Image src={project.image} alt="" fill quality={90} sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
+        ) : (
+          <VisualPlaceholder icon={Icon} label={project.tag} />
+        )}
+        {project.image?.startsWith("/images/illustrations/") && (
+          <span className="illustration-label"><T value={{ ar: "صورة توضيحية", en: "Illustrative image" }} /></span>
+        )}
       </div>
       <div className="project-card-body">
         <span className="project-location"><T value={project.location} /></span>
@@ -63,16 +97,21 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
 }
 
 export function NewsCard({ item, index = 0 }: { item: NewsItem; index?: number }) {
+  const href = `/news/${item.slug}`;
   return (
     <Reveal className="news-card" delay={Math.min(index, 2) * 70}>
-      <Link className="news-card-image" href={item.href} aria-label={item.title.ar}>
-        <Image src={item.image} alt={item.title.ar} fill quality={90} sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
+      <Link className="news-card-image" href={href} label={item.title}>
+        {item.image ? (
+          <LocalizedImage src={item.image} alt={item.imageAlt} fill quality={90} sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw" />
+        ) : (
+          <VisualPlaceholder icon={Stethoscope} label={item.tag} />
+        )}
       </Link>
       <div className="news-card-body">
         <span className="news-tag"><T value={item.tag} /></span>
         <h3><T value={item.title} /></h3>
         <p><T value={item.description} /></p>
-        <Link className="news-link" href={item.href}>
+        <Link className="news-link" href={href}>
           <T value={{ ar: "اقرأ التفاصيل", en: "Read more" }} />
           <ArrowUpLeft size={17} />
         </Link>
@@ -85,7 +124,7 @@ export function LeadershipSpotlight({ leader }: { leader: ExecutiveLeader }) {
   return (
     <Reveal className="leadership-spotlight-stage">
       <article className="leadership-card">
-        <div className="leadership-image"><Image src={leader.image} alt={leader.name.ar} fill quality={90} sizes="(max-width: 700px) 100vw, (max-width: 1180px) 560px, 600px" /></div>
+        <div className="leadership-image"><LocalizedImage src={leader.image} alt={leader.name} fill quality={90} sizes="(max-width: 700px) 100vw, (max-width: 1180px) 560px, 600px" /></div>
         <div className="leadership-card-copy">
           <h3><T value={leader.name} /></h3>
           <div className="leadership-role-row">

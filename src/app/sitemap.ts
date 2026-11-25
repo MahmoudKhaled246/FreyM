@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
-import { projects } from "@/lib/content";
-import { absoluteUrl } from "@/lib/seo";
+import { newsItems, projects, services } from "@/lib/content";
+import { localizePath } from "@/lib/locale";
+import { absoluteUrl, isIndexableDeployment } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
@@ -8,39 +9,38 @@ const pages = [
   {
     path: "/",
     images: [
-      "/images/heroes/home.png",
-      "/images/about/construction-experience-hd.png",
+      "/images/field/foundation-site-a.webp",
+      "/images/field/structural-site.webp",
+      "/images/heroes/thumbnail.webp",
     ],
   },
-  { path: "/about", images: ["/images/heroes/about.png"] },
+  { path: "/about", images: ["/images/field/building-exterior.webp", "/images/illustrations/frey-m-facade-bronze.webp", "/images/field/ceo-haggag-studio-retouched.webp"] },
   {
     path: "/services",
-    images: [
-      "/images/heroes/services.png",
-      "/images/services/construction-hd.png",
-      "/images/services/medical-hd.png",
-      "/images/services/supplies-hd.png",
-      "/images/services/maintenance-hd.png",
-      "/images/services/interiors-hd.png",
-      "/images/services/landscape-hd.png",
-      "/images/services/soil-dewatering-hd.png",
-    ],
+    images: services.flatMap((service) => service.image ? [service.image] : []),
   },
-  { path: "/projects", images: ["/images/heroes/projects.png"] },
-  { path: "/profile", images: ["/images/heroes/profile.png"] },
-  { path: "/news", images: ["/images/heroes/news.png"] },
-  { path: "/contact", images: ["/images/heroes/contact.png"] },
+  { path: "/projects", images: ["/images/field/demolition-site.webp"] },
+  { path: "/profile", images: ["/images/field/site-survey.webp"] },
+  { path: "/news", images: ["/images/field/site-supervision.webp"] },
+  { path: "/contact", images: ["/images/illustrations/engineering-consultation.webp"] },
+  { path: "/privacy", images: [] },
+  { path: "/terms", images: [] },
+  ...newsItems.map((article) => ({
+    path: `/news/${article.slug}`,
+    images: [article.image],
+  })),
   ...projects.map((project) => ({
     path: `/projects/${project.slug}`,
-    images: project.slug === "operating-rooms"
-      ? ["/images/heroes/project-detail.png", project.image]
-      : [project.image],
+    images: project.image ? [project.image] : [],
   })),
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return pages.map((page) => ({
-    url: absoluteUrl(page.path),
-    images: page.images.map((image) => absoluteUrl(image)),
-  }));
+  if (!isIndexableDeployment) return [];
+  return pages.flatMap(({ path, images }) =>
+    (["ar", "en"] as const).map((language) => ({
+      url: absoluteUrl(localizePath(path, language)),
+      images: images.map((image) => absoluteUrl(image)),
+    })),
+  );
 }

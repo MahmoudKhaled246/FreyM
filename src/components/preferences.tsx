@@ -3,13 +3,12 @@
 import { createContext, useCallback, useContext, useMemo, useSyncExternalStore } from "react";
 import type { Localized } from "@/lib/content";
 
-type Language = "ar" | "en";
+import type { Language } from "@/lib/locale";
 type Theme = "dark" | "light";
 
 type Preferences = {
   language: Language;
   theme: Theme;
-  setLanguage: (language: Language) => void;
   toggleTheme: () => void;
 };
 
@@ -22,44 +21,34 @@ function subscribeToPreferences(onStoreChange: () => void) {
   return () => window.removeEventListener(preferenceEvent, onStoreChange);
 }
 
-function getPreferenceSnapshot() {
-  const root = document.documentElement;
-  const language = root.dataset.lang === "en" ? "en" : "ar";
-  const theme = root.dataset.theme === "light" ? "light" : "dark";
-  return `${language}:${theme}`;
+function getThemeSnapshot(): Theme {
+  return document.documentElement.dataset.theme === "light" ? "light" : "dark";
 }
 
-function getServerPreferenceSnapshot() {
-  return "ar:dark";
+function getServerThemeSnapshot(): Theme {
+  return "dark";
 }
 
-export function PreferencesProvider({ children }: { children: React.ReactNode }) {
-  const snapshot = useSyncExternalStore(
+export function PreferencesProvider({ children, language }: { children: React.ReactNode; language: Language }) {
+  const theme = useSyncExternalStore(
     subscribeToPreferences,
-    getPreferenceSnapshot,
-    getServerPreferenceSnapshot
+    getThemeSnapshot,
+    getServerThemeSnapshot,
   );
-  const [language, theme] = snapshot.split(":") as [Language, Theme];
-
-  const setLanguage = useCallback((next: Language) => {
-    const root = document.documentElement;
-    root.dataset.lang = next;
-    root.lang = next;
-    root.dir = next === "ar" ? "rtl" : "ltr";
-    localStorage.setItem("frey-language", next);
-    window.dispatchEvent(new Event(preferenceEvent));
-  }, []);
-
   const toggleTheme = useCallback(() => {
     const next = theme === "dark" ? "light" : "dark";
     document.documentElement.dataset.theme = next;
-    localStorage.setItem("frey-theme", next);
     window.dispatchEvent(new Event(preferenceEvent));
+    try {
+      localStorage.setItem("frey-theme", next);
+    } catch {
+      // The theme still works when browser storage is unavailable.
+    }
   }, [theme]);
 
   const value = useMemo(
-    () => ({ language, theme, setLanguage, toggleTheme }),
-    [language, theme, setLanguage, toggleTheme]
+    () => ({ language, theme, toggleTheme }),
+    [language, theme, toggleTheme]
   );
 
   return <PreferencesContext.Provider value={value}>{children}</PreferencesContext.Provider>;

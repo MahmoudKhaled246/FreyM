@@ -100,7 +100,7 @@ export const services = [
     slug: "construction",
     number: "01",
     icon: "construction",
-    image: "/images/services/construction-hd.png",
+    image: "/images/field/construction-crew.webp",
     title: localize(
       "التشييد والمقاولات العامة",
       "Construction & general contracting",
@@ -123,7 +123,7 @@ export const services = [
     slug: "medical",
     number: "02",
     icon: "medical",
-    image: "/images/services/medical-hd.png",
+    image: "/images/illustrations/medical-fit-outs.webp",
     title: localize("التجهيزات العامة والطبية", "General & medical fit-outs"),
     description: localize(
       "تجهيز المنشآت الطبية وغير الطبية بأحدث الأنظمة، بما في ذلك غرف العمليات المعقمة ووحدات العناية المركزة.",
@@ -140,7 +140,7 @@ export const services = [
     slug: "supplies",
     number: "03",
     icon: "supplies",
-    image: "/images/services/supplies-hd.png",
+    image: "/images/illustrations/general-supplies.webp",
     title: localize("التوريدات العمومية", "General supplies"),
     description: localize(
       "توريد كافة الاحتياجات الهندسية والصناعية والطبية للمؤسسات الحكومية وقطاع الأعمال بأعلى معايير الجودة.",
@@ -160,7 +160,7 @@ export const services = [
     slug: "maintenance",
     number: "04",
     icon: "maintenance",
-    image: "/images/services/maintenance-hd.png",
+    image: "/images/field/electrical-team.webp",
     title: localize("أعمال الصيانة والتشغيل", "Maintenance & operations"),
     description: localize(
       "إدارة وصيانة المنشآت والمجمعات السكنية والتجارية لضمان استدامة الأداء والكفاءة التشغيلية.",
@@ -180,7 +180,7 @@ export const services = [
     slug: "interiors",
     number: "05",
     icon: "interiors",
-    image: "/images/services/interiors-hd.png",
+    image: "/images/illustrations/interiors.webp",
     title: localize("التصميمات الداخلية والديكور", "Interior design & décor"),
     description: localize(
       "خلق بيئات معمارية ملهمة من خلال التصميم الداخلي والخارجي المبتكر والتشطيبات فائقة الجودة.",
@@ -197,7 +197,7 @@ export const services = [
     slug: "landscape",
     number: "06",
     icon: "landscape",
-    image: "/images/services/landscape-hd.png",
+    image: "/images/illustrations/landscaping.webp",
     title: localize("تجهيز المساحات الخضراء", "Landscape development"),
     description: localize(
       "تنسيق الحدائق والمتنزهات العامة واللاندسكيب لخلق مساحات خضراء متناغمة مع البيئة العمرانية.",
@@ -214,7 +214,7 @@ export const services = [
   //   slug: "soil-dewatering",
   //   number: "07",
   //   icon: "dewatering",
-  //   image: "/images/services/soil-dewatering-hd.png",
+  //   image: null,
   //   title: localize(
   //     "تجفيف التربة ونزح المياه الجوفية",
   //     "Soil dewatering & groundwater control",
@@ -235,7 +235,7 @@ export const services = [
 export const projects = [
   {
     slug: "blood-bank",
-    image: "/images/projects/blood-bank-hd.png",
+    image: "/images/illustrations/blood-bank.webp",
     category: "supplies",
     tag: localize("صيانة وتوريد طبي", "Medical supply"),
     location: localize(
@@ -253,7 +253,7 @@ export const projects = [
   },
   {
     slug: "autoclave",
-    image: "/images/projects/autoclave-hd.png",
+    image: "/images/illustrations/autoclave.webp",
     category: "maintenance",
     tag: localize("صيانة طبية", "Medical maintenance"),
     location: localize(
@@ -271,7 +271,7 @@ export const projects = [
   },
   {
     slug: "icu",
-    image: "/images/projects/icu-hd.png",
+    image: "/images/illustrations/icu.webp",
     category: "maintenance",
     tag: localize("صيانة طبية", "Medical maintenance"),
     location: localize("مستشفى حميات دسوق", "Desouk Fever Hospital"),
@@ -286,7 +286,7 @@ export const projects = [
   },
   {
     slug: "generator",
-    image: "/images/projects/generator-hd.png",
+    image: "/images/illustrations/standby-generator.webp",
     category: "supplies",
     tag: localize("كهروميكانيك", "Electromechanical"),
     location: localize("مستشفى قفط المركزي", "Qift Central Hospital"),
@@ -301,7 +301,7 @@ export const projects = [
   },
   {
     slug: "operating-rooms",
-    image: "/images/projects/operating-room-hd.png",
+    image: "/images/illustrations/operating-room.webp",
     category: "construction",
     tag: localize("إنشاءات طبية", "Medical construction"),
     location: localize(
@@ -319,7 +319,7 @@ export const projects = [
   },
   {
     slug: "elevators",
-    image: "/images/projects/elevator-hd.png",
+    image: "/images/field/elevator-team.webp",
     category: "interiors",
     tag: localize("تطوير وتجديد", "Upgrade & renewal"),
     location: localize("المجمعات الحكومية", "Government facilities"),
@@ -345,7 +345,7 @@ export const processSteps = [
 ];
 
 export const executiveLeader = {
-  image: "/images/team/mohamed-haggag.png",
+  image: "/images/field/ceo-haggag-studio-retouched.webp",
   name: localize("د / محمد حجاج ", "Dr. Mohamed Haggag"),
   role: localize("الرئيس التنفيذي والمؤسس", "CEO & Founder"),
 };
@@ -466,7 +466,8 @@ export const leadershipMessage = {
 export const newsItems = [
   {
     slug: "operating-rooms-milestone",
-    image: "/images/news/operating-room-handover.png",
+    image: "/images/illustrations/operating-room.webp",
+    imageAlt: localize("صورة توضيحية لغرفة عمليات", "Illustration of an operating room"),
     tag: localize("تحديثات المشروعات", "Project update"),
     title: localize(
       "استكمال منظومة تجهيز غرف العمليات الكبرى",
@@ -476,11 +477,22 @@ export const newsItems = [
       "نظرة على تكامل التشطيبات المعقمة وشبكات الغازات الطبية وأنظمة التحكم البيئي داخل المشروع.",
       "A closer look at sterile finishes, medical-gas networks and environmental controls working as one system.",
     ),
-    href: "/projects/operating-rooms",
+    projectHref: "/projects/operating-rooms",
+    paragraphs: [
+      localize(
+        "شمل مشروع مستشفى كفر الشيخ العام تأهيل غرف العمليات الكبرى وتجديد البنية التحتية التي تخدمها. تضمن نطاق العمل التشطيبات المعقمة وشبكات الغازات الطبية، إلى جانب رفع كفاءة التكييف المركزي والترشيح.",
+        "The Kafr El Sheikh General Hospital project refurbished major operating rooms and renewed their supporting infrastructure. The scope included sterile finishes, medical-gas networks, and upgrades to central ventilation and filtration.",
+      ),
+      localize(
+        "يبدأ التنسيق بين هذه الأنظمة من توزيع نقاط الخدمة ومخارج الغازات، ويمتد إلى اختبارات التشغيل والتسليم. وتعرض صفحة المشروع تفاصيل أعمال التأهيل والتجهيز.",
+        "Coordination across these systems starts with the layout of service points and gas outlets and continues through commissioning and handover. The project page covers the fit-out and equipment in more detail.",
+      ),
+    ],
   },
   {
     slug: "critical-maintenance",
-    image: "/images/news/preventive-maintenance.png",
+    image: "/images/field/electrical-maintenance.webp",
+    imageAlt: localize("فني يفحص لوحة كهربائية", "Technician inspecting an electrical panel"),
     tag: localize("الصيانة والتشغيل", "Maintenance & operations"),
     title: localize(
       "لماذا تبدأ موثوقية المنشآت الحيوية بالصيانة الوقائية؟",
@@ -490,11 +502,22 @@ export const newsItems = [
       "منهج واضح للفحص الدوري وإدارة الأعطال وحماية استمرارية التشغيل داخل وحدات الرعاية الحرجة.",
       "A disciplined approach to inspections, fault management and uptime in critical-care environments.",
     ),
-    href: "/projects/icu",
+    projectHref: "/projects/icu",
+    paragraphs: [
+      localize(
+        "يساعد الفحص الدوري على رصد تراجع أداء الأجهزة والأنظمة قبل أن يتحوّل إلى عطل مفاجئ. وفي وحدات الرعاية الحرجة، يُنسَّق توقيت الصيانة مع فريق المنشأة للحفاظ على استمرارية الخدمة.",
+        "Regular inspections help identify declining equipment performance before it becomes an unexpected failure. In critical-care units, maintenance timing is coordinated with facility staff to protect service continuity.",
+      ),
+      localize(
+        "يوفّر سجل الفحوص والأعطال أساسًا لترتيب الأولويات ومتابعة الإجراءات التصحيحية. ويجمع مثال مستشفى حميات دسوق بين الإشراف الفني والصيانة الوقائية للتجهيزات الطبية والكهروميكانيكية.",
+        "Inspection and fault records help teams prioritize follow-up and track corrective work. The Desouk Fever Hospital example brings together technical oversight and preventive maintenance for medical and electromechanical equipment.",
+      ),
+    ],
   },
   {
     slug: "standby-power",
-    image: "/images/news/standby-power-test.png",
+    image: "/images/field/electrical-panel-review.webp",
+    imageAlt: localize("فني يراجع لوحة توزيع كهربائية", "Technician reviewing an electrical distribution panel"),
     tag: localize("حلول الطاقة", "Power systems"),
     title: localize(
       "رفع جاهزية أنظمة الديزل والطاقة الاحتياطية",
@@ -504,7 +527,17 @@ export const newsItems = [
       "كيف تتكامل المولدات ولوحات التحكم وخطط الاختبار لحماية المنشآت من توقف التيار.",
       "How generators, control panels and testing plans combine to protect essential facilities from outages.",
     ),
-    href: "/projects/generator",
+    projectHref: "/projects/generator",
+    paragraphs: [
+      localize(
+        "تعتمد استمرارية الكهرباء على جاهزية المولد ولوحة التحكم معًا. يساعد الاختبار الدوري على مراجعة بدء التشغيل وانتقال التغذية، وعلى تتبّع الملاحظات التي تحتاج إلى صيانة.",
+        "Electrical continuity depends on the readiness of both the generator and its control panel. Periodic testing helps verify startup and transfer of supply and identify items requiring maintenance.",
+      ),
+      localize(
+        "يعرض مشروع مستشفى قفط المركزي مثالًا على تركيب وصيانة المولدات الاحتياطية ولوحات التحكم ضمن منظومة واحدة تخدم الأحمال الأساسية للمنشأة.",
+        "The Qift Central Hospital project is an example of installing and maintaining standby generators and control panels as one system supporting essential facility loads.",
+      ),
+    ],
   },
 ];
 

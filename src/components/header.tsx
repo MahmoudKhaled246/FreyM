@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { LocalizedLink as Link } from "@/components/localized-link";
 import { usePathname } from "next/navigation";
 import {
   ArrowUpLeft,
@@ -17,11 +17,23 @@ import { Fragment, useEffect, useState } from "react";
 import { Brand } from "@/components/brand";
 import { T, useLocalized, usePreferences } from "@/components/preferences";
 import { common, localize } from "@/lib/content";
+import { localizePath, withoutLanguagePrefix } from "@/lib/locale";
 import { scrollToTop } from "@/lib/scroll";
 
 export function Header() {
-  const pathname = usePathname();
-  const { language, theme, setLanguage, toggleTheme } = usePreferences();
+  const currentPath = usePathname();
+  const pathname = withoutLanguagePrefix(currentPath).replace(/\/$/, "") || "/";
+  const inProjectArchive = /^\/projects\/?$/.test(pathname);
+  const { language, theme, toggleTheme } = usePreferences();
+  const alternateLanguage = language === "ar" ? "en" : "ar";
+  const alternatePath = localizePath(pathname, alternateLanguage);
+  const switchLanguage = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const { search, hash } = window.location;
+    if (!search && !hash) return;
+    event.preventDefault();
+    window.location.assign(alternatePath + search + hash);
+  };
   const text = useLocalized();
   const [open, setOpen] = useState(false);
   const [dismissedDropdown, setDismissedDropdown] = useState<string | null>(
@@ -52,7 +64,7 @@ export function Header() {
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     if (href.includes("#")) return false;
-    return pathname.startsWith(href.split("#")[0]);
+    return pathname === href || pathname.startsWith(`${href}/`);
   };
 
   const dismissDesktopDropdown = (href: string) => {
@@ -126,14 +138,16 @@ export function Header() {
             </div>
           </div>
           <div className="control-row">
-            <button
+            <a
               className="mini-control language-control"
-              onClick={() => setLanguage(language === "ar" ? "en" : "ar")}
+              href={alternatePath}
+              hrefLang={alternateLanguage}
+              onClick={switchLanguage}
               aria-label={text(localize("تغيير اللغة", "Change language"))}
             >
               <span className={language === "en" ? "active" : ""}>EN</span>
               <span className={language === "ar" ? "active" : ""}>العربية</span>
-            </button>
+            </a>
             <button
               className="icon-control"
               onClick={toggleTheme}
@@ -153,6 +167,7 @@ export function Header() {
           >
             {common.nav.map((item) => {
               const active = isActive(item.href);
+              const nativeProjectLinks = inProjectArchive && item.href === "/projects";
               if (item.children?.length) {
                 return (
                   <div
@@ -179,9 +194,11 @@ export function Header() {
                     </Link>
                     <div className="nav-dropdown-menu">
                       {item.children.map((child) => (
-                        <Link key={child.href} href={child.href}>
-                          <T value={child.label} />
-                        </Link>
+                        nativeProjectLinks ? (
+                          <a key={child.href} href={child.href.replace("/projects", currentPath)}><T value={child.label} /></a>
+                        ) : (
+                          <Link key={child.href} href={child.href}><T value={child.label} /></Link>
+                        )
                       ))}
                     </div>
                   </div>
@@ -206,7 +223,7 @@ export function Header() {
             })}
           </nav>
           <div className="desktop-actions">
-            <Link className="button button-primary header-cta" href="/contact">
+            <Link className="button button-primary header-cta" href="/contact#contact-form">
               <T value={common.startProject} />
               <ArrowUpLeft size={17} />
             </Link>
@@ -251,7 +268,9 @@ export function Header() {
         >
           {common.nav.map((item, index) => {
             const active = isActive(item.href);
+            const nativeProjectLinks = inProjectArchive && item.href === "/projects";
             if (item.children?.length) {
+              const ChildLink = nativeProjectLinks ? "a" : Link;
               return (
                 <details
                   className={`mobile-nav-group ${active ? "active" : ""}`}
@@ -270,14 +289,9 @@ export function Header() {
                   </summary>
                   <div className="mobile-submenu">
                     {item.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        onClick={() => setOpen(false)}
-                        onNavigate={() => setOpen(false)}
-                      >
+                      <ChildLink key={child.href} href={nativeProjectLinks ? child.href.replace("/projects", currentPath) : child.href}>
                         <T value={child.label} />
-                      </Link>
+                      </ChildLink>
                     ))}
                   </div>
                 </details>
@@ -305,12 +319,15 @@ export function Header() {
           })}
         </nav>
         <div className="mobile-menu-controls">
-          <button
+          <a
             className="button button-secondary"
-            onClick={() => setLanguage(language === "ar" ? "en" : "ar")}
+            href={alternatePath}
+            hrefLang={alternateLanguage}
+            lang={alternateLanguage}
+            onClick={switchLanguage}
           >
             {language === "ar" ? "English" : "العربية"}
-          </button>
+          </a>
           <button className="button button-secondary" onClick={toggleTheme}>
             {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
             <T value={localize("المظهر", "Theme")} />
@@ -318,7 +335,7 @@ export function Header() {
         </div>
         <Link
           className="button button-primary mobile-start"
-          href="/contact"
+          href="/contact#contact-form"
           onClick={() => setOpen(false)}
           onNavigate={() => setOpen(false)}
         >

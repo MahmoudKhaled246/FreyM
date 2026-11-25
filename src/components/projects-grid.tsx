@@ -28,7 +28,8 @@ export function ProjectsGrid() {
 
   const selectFilter = (value: string) => {
     setActive(value);
-    window.history.replaceState(null, "", value === "all" ? "/projects" : `/projects#${value}`);
+    const { pathname, search } = window.location;
+    window.history.replaceState(null, "", `${pathname}${search}${value === "all" ? "" : `#${value}`}`);
   };
 
   const visible = active === "all" ? projects : projects.filter((project) => project.category === active);
@@ -36,7 +37,7 @@ export function ProjectsGrid() {
     <>
       <div className="filter-row" role="group" aria-label="Project filters">
         {filters.map((filter) => (
-          <button key={filter.value} className={active === filter.value ? "active" : ""} onClick={() => selectFilter(filter.value)} aria-pressed={active === filter.value}>
+          <button id={filter.value} key={filter.value} className={active === filter.value ? "active" : ""} onClick={() => selectFilter(filter.value)} aria-pressed={active === filter.value}>
             <T value={filter.label} />
           </button>
         ))}

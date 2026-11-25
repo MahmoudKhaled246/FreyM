@@ -39,22 +39,22 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/Home/constructionProject",
-        destination: "/services",
+        destination: "/services#construction",
         permanent: true,
       },
       {
         source: "/Home/Decoration",
-        destination: "/services",
+        destination: "/services#interiors",
         permanent: true,
       },
       {
         source: "/Home/Generalsupplies",
-        destination: "/services",
+        destination: "/services#supplies",
         permanent: true,
       },
       {
         source: "/Home/Soildrying",
-        destination: "/services#soil-dewatering",
+        destination: "/services#service-list",
         permanent: true,
       },
       {

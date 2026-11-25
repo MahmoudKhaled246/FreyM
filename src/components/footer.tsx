@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { LocalizedLink as Link } from "@/components/localized-link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Brand } from "@/components/brand";
 import { T } from "@/components/preferences";
@@ -13,8 +13,8 @@ export function Footer() {
           <p>
             <T
               value={localize(
-                "15 عامًا من الخبرة نبني بها المستقبل بدقة الحاضر، عبر مجموعة هندسية متكاملة تخدم قطاعات التشييد والتوريدات.",
-                "Building the future with 15 years of experience and the precision of today—an integrated engineering group serving construction and supply sectors.",
+                "أكثر من 8 أعوام من الخبرة نبني بها المستقبل بدقة الحاضر، عبر مجموعة هندسية متكاملة تخدم قطاعات التشييد والتوريدات.",
+                "Building the future with more than 8 years of experience and the precision of today—an integrated engineering group serving construction and supply sectors.",
               )}
             />
           </p>
@@ -40,7 +40,7 @@ export function Footer() {
           <ul>
             {services.slice(0, 4).map((service) => (
               <li key={service.slug}>
-                <Link href="/services">
+                <Link href={`/services#${service.slug}`}>
                   <T value={service.title} />
                 </Link>
               </li>
@@ -79,11 +79,11 @@ export function Footer() {
           />
         </p>
         <div>
-          <Link href="#">
+          <Link href="/privacy">
             <T value={localize("سياسة الخصوصية", "Privacy")} />
           </Link>
           <span>•</span>
-          <Link href="#">
+          <Link href="/terms">
             <T value={localize("الشروط والأحكام", "Terms")} />
           </Link>
         </div>

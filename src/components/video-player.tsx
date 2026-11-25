@@ -141,7 +141,7 @@ export function VideoPlayer() {
         className="video-player-media"
         playsInline
         preload="metadata"
-        poster="/images/heroes/thumbnail.png"
+          poster="/images/field/construction-crew.webp"
         onClick={togglePlayback}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
